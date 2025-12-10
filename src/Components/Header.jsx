@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { FaUserCircle } from "react-icons/fa";
 import logo from "/assets/logo.png"; 
 import Button from "./btnconnexion/btncnx";
+import { AuthContext } from "../context/AuthContext";
 
 const Header = () => {
-  const location = useLocation(); // pour savoir le lien actif
+  const location = useLocation();
+  const { user, logout } = useContext(AuthContext);
+  const [showMenu, setShowMenu] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const navLinks = [
     { name: "Accueil", path: "/" },
@@ -13,27 +18,25 @@ const Header = () => {
     { name: "Contact", path: "/contact" },
   ];
 
+  const handleToggle = () => setIsCollapsed(!isCollapsed);
+  const closeMenu = () => setIsCollapsed(false);
+
   return (
     <header>
-
-      {/* ===== TOP HEADER ===== */}
+      {/* TOP HEADER */}
       <div className="top-header d-none d-lg-flex justify-content-center gap-4">
-        <span className="texttopbar text-white fw-medium " >
-           Spa BéBé | Workshop enfant | Duo maman bébé | Relaxation maman | Beauté maman
+        <span className="texttopbar text-white fw-medium">
+          Spa BéBé | Workshop enfant | Duo maman bébé | Relaxation maman | Beauté maman
         </span>
       </div>
 
-      {/* ===== MAIN NAVBAR ===== */}
+      {/* MAIN NAVBAR */}
       <nav className="navbar navbar-expand-lg sticky-top">
         <div className="container">
 
           {/* LOGO + TITRE */}
           <Link className="navbar-brand d-flex align-items-center gap-3" to="/">
-            <img
-              src={logo}
-              alt="logo"
-              style={{ height: "60px", objectFit: "contain" }}
-            />
+            <img src={logo} alt="logo" style={{ height: "60px", objectFit: "contain" }} />
             <div className="d-flex flex-column">
               <h1 className="m-0" style={{ fontSize: "1.5rem", color: "#333", fontFamily: "poppins" }}>
                 MumandMe
@@ -46,16 +49,15 @@ const Header = () => {
 
           {/* TOGGLER MOBILE */}
           <button
-            className="navbar-toggler"
+            className="navbar-toggler mx-auto"
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#mainNavbar"
+            onClick={handleToggle}
           >
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          {/* LINKS + BTN + PANIER */}
-          <div className="collapse navbar-collapse" id="mainNavbar">
+          {/* LINKS + LOGIN + PANIER */}
+          <div className={`collapse navbar-collapse ${isCollapsed ? "show" : ""}`} id="mainNavbar">
 
             {/* NAV LINKS */}
             <ul className="navbar-nav mx-auto gap-3 text-center">
@@ -64,6 +66,7 @@ const Header = () => {
                   <Link
                     to={link.path}
                     className={`nav-link fw-semibold ${location.pathname === link.path ? "active" : ""}`}
+                    onClick={closeMenu} // ferme le menu mobile
                   >
                     {link.name}
                   </Link>
@@ -71,23 +74,38 @@ const Header = () => {
               ))}
             </ul>
 
-            {/* RIGHT: LOGIN + PANIER */}
-            <div className="d-flex align-items-center gap-3">
-              <Link to="/login" style={{ textDecoration: "none" }}>
-                <Button>Connexion</Button>
-              </Link>
+            {/* LOGIN / PROFILE + PANIER */}
+            <div className="d-flex align-items-center gap-3 justify-content-center mt-3 mt-lg-0">
+              {!user ? (
+                <Link to="/login" style={{ textDecoration: "none" }}>
+                  <Button>Connexion</Button>
+                </Link>
+              ) : (
+                <div className="position-relative">
+                  <button
+                    className="btn btn-light rounded-circle fs-4"
+                    onClick={() => setShowMenu(!showMenu)}
+                  >
+                    <FaUserCircle />
+                  </button>
 
+                  {showMenu && (
+                    <div className="dropdown-menu show position-absolute end-0 mt-2" style={{ minWidth: "150px" }}>
+                      <Link to="/profile" className="dropdown-item">Mon profil</Link>
+                      <button className="dropdown-item" onClick={logout}>Déconnexion</button>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* PANIER */}
               <Link to="/cart" className="text-dark fs-4 position-relative">
                 <i className="fa-solid fa-cart-shopping"></i>
-                <span
-                  className="badge bg-danger position-absolute top-0 start-100 translate-middle"
-                  style={{ fontSize: "0.7rem" }}
-                >
+                <span className="badge bg-danger position-absolute top-0 start-100 translate-middle" style={{ fontSize: "0.7rem" }}>
                   0
                 </span>
               </Link>
             </div>
-
           </div>
         </div>
       </nav>

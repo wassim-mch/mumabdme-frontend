@@ -25,6 +25,8 @@
   color: #333 !important;
   transition: 0.3s ease;
   position: relative;
+  border: none !important;
+  text-decoration: none !important;
 }
 
 .navbar-nav .nav-link:hover {
@@ -39,6 +41,7 @@
   background: #d679ce;
   margin-top: 4px;
   border-radius: 2px;
+  border: none !important;
 }
 
 /* LOGO + TITLE */
@@ -81,8 +84,47 @@
   color: #d679ce !important;
 }
 
+
 /* MOBILE */
 @media (max-width: 991px) {
+  @media (max-width: 991px) {
+  /* Center navbar links, profile and cart */
+  #mainNavbar {
+    text-align: center;
+      border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  }
+
+  #mainNavbar .navbar-nav {
+    flex-direction: column;
+    gap: 15px;
+    margin: 0 !important;
+          border: none !important;
+
+  }
+
+  /* Center login/profile + cart below links */
+  #mainNavbar > .d-flex {
+    justify-content: center !important;
+    margin-top: 15px;
+  }
+
+  /* Make toggle button centered */
+  .navbar-toggler {
+    margin: 0px;
+    margin-left: auto;
+    margin-right: 10px;
+    display: block; 
+    border: none;
+
+  }
+  .navbar-toggler:focus {
+    box-shadow: none;
+
+  }
+}
+
   .navbar-nav {
     margin-top: 15px;
     
@@ -91,6 +133,8 @@
   .navbar-nav .nav-link {
     padding: 10px !important;
     font-size: 16px;
+          border: none !important;
+
   }
 
   .btn-primary {
@@ -103,12 +147,23 @@
   }
 }
 
-/*FOOTER*/
+/* FOOTER */
 .footer-container {
   background: #f3caf1;
   color: #000000;
+  padding: 40px 20px;
+  font-family: 'Poppins', sans-serif;
 }
 
+/* Conteneur interne pour alignement */
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+/* Logo et slogan */
 .footer-logo {
   width: 120px;
   height: auto;
@@ -120,25 +175,25 @@
   opacity: 0.9;
   font-family: Pacifico, cursive;
   line-height: 1.5;
+  margin-top: 10px;
 }
 
+/* Titres */
 .footer-title {
-    font-family: poppins, sans-serif;
   font-size: 1.3rem;
   margin-bottom: 0.8rem;
   font-weight: bold;
   color: #000000;
 }
 
+/* Liens */
 .footer-links {
   list-style: none;
   padding-left: 0;
-  
 }
 
 .footer-links li {
   margin-bottom: 0.5rem;
-  
 }
 
 .footer-links a {
@@ -153,27 +208,62 @@
   color: #ff007b; /* couleur douce */
 }
 
-.footer-bottom {
-  border-top: 1px solid #333;
-  padding-top: 10px;
-  font-size: 1rem;
-  color: #000000;
-}
-
 /* Icônes */
 .footer-links svg {
   margin-right: 8px;
 }
 
-/* Responsive */
-@media (max-width: 576px) {
-  .footer-logo {
-    width: 100px;
+/* Bas du footer */
+.footer-bottom {
+  border-top: 1px solid #333;
+  padding-top: 10px;
+  font-size: 1rem;
+  color: #000000;
+  margin-top: 30px;
+  text-align: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .footer-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-links {
+    padding-left: 0;
   }
   .footer-slogan {
-    font-size: 0.85rem;
+    max-width: 100%;
+    margin-top: 15px;
   }
 }
+
+@media (max-width: 576px) {
+  .footer-inner {
+    flex-direction: row;       /* côte à côte */
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;           /* permet de passer en colonne si trop petit */
+    gap: 20px;
+  }
+
+  .footer-section {
+    flex: 1;                   /* chaque section prend de l’espace */
+    min-width: 45%;            /* au moins 45% de largeur pour tenir côte à côte */
+  }
+
+  .footer-logo {
+    width: 100px;
+    margin-bottom: 15px;
+  }
+
+  .footer-slogan {
+    font-size: 0.85rem;
+    max-width: 100%;
+  }
+}
+
 /* ---------------------------------------------
    HERO SECTION
 ---------------------------------------------- */
@@ -242,7 +332,11 @@
 @media (max-width: 992px) {
   .hero-slide,
   .hero-container {
-    height: 70vh;
+    height: 40vh;
+  }
+  .hero-slide {
+    background-size: cover;
+    background-position: center;
   }
 
   .hero-content {
@@ -262,7 +356,8 @@
 @media (max-width: 576px) {
   .hero-slide,
   .hero-container {
-    height: 60vh;
+     background-size: cover;
+    background-position: center;
   }
 
   .hero-content {
@@ -413,5 +508,80 @@
 @media (max-width: 576px) {
   .register-form-container {
     padding: 1.5rem;
+  }
+}
+
+
+
+
+/*Layout admin*/
+/* Layout Admin */
+.admin-layout {
+  display: flex;
+}
+
+/* Admin topbar */
+.navbar-nav .nav-link {
+  font-weight: 500;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.navbar-nav .nav-link.active {
+  text-decoration: underline;
+}
+
+@media (min-width: 992px) {
+    .navbar-nav {
+    text-align: center;
+  }
+
+  
+}
+
+.admin-topbar {
+  background: linear-gradient(90deg, #6f42c1, #6610f2);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  padding: 0.5rem 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.admin-topbar .nav-link {
+  font-weight: 500;
+  font-size: 1rem;
+  color: #ffffff;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.admin-topbar .nav-link span {
+  margin-left: 5px;
+}
+
+.admin-topbar .nav-link:hover,
+.admin-topbar .nav-link.active {
+  color: #ffd700;
+}
+
+.admin-topbar .btn-danger {
+  background: #ff4d4d;
+  border: none;
+  transition: 0.3s;
+}
+
+.admin-topbar .btn-danger:hover {
+  background: #cc0000;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .admin-topbar .navbar-nav {
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .admin-topbar .btn-danger {
+    margin-top: 0.5rem;
   }
 }
