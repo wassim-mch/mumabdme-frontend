@@ -35,8 +35,8 @@ const Header = () => {
               style={{ height: "60px", objectFit: "contain" }}
             />
             <div className="d-flex flex-column">
-              <h1 className="m-0" style={{ fontSize: "1.5rem", color: "#333" }}>
-                Institut Adroit
+              <h1 className="m-0" style={{ fontSize: "1.5rem", color: "#333", fontFamily: "poppins" }}>
+                MumandMe
               </h1>
               <small className="text-muted" style={{ fontSize: "0.85rem" }}>
                 bien-être & innovation

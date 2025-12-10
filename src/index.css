@@ -85,7 +85,7 @@
 @media (max-width: 991px) {
   .navbar-nav {
     margin-top: 15px;
-    gap: 10px !important;
+    
   }
 
   .navbar-nav .nav-link {
@@ -281,3 +281,137 @@
 
 
 
+/*Login page*/
+/* Fond et overlay */
+.login-page {
+  height: 100vh;
+  width: 100%;
+  background-image: url('/assets/bgauth.jpg'); /* ton image */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-page .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0); /* assombrir l'image */
+}
+
+/* Formulaire centré */
+.login-form-container {
+  position: relative;
+  z-index: 2;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Titres */
+.login-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Lien et texte */
+.login-form small a {
+  color: #0d6efd;
+  text-decoration: none;
+}
+
+.login-form small a:hover {
+  text-decoration: underline;
+}
+
+/* Bouton */
+.login-form button {
+  font-weight: bold;
+  padding: 0.5rem 0;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .login-form-container {
+    padding: 1.5rem;
+  }
+}
+
+
+/* Register*/
+/* Fond et overlay */
+.register-page {
+  height: 100vh;
+  width: 100%;
+  background-image: url('/assets/bgauth.jpg'); /* ton image */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-page .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0);
+}
+
+/* Formulaire centré */
+.register-form-container {
+  position: relative;
+  z-index: 2;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  max-width: 450px;
+  width: 90%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Titres */
+.register-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Lien et texte */
+.register-form small a {
+  color: #0d6efd;
+  text-decoration: none;
+}
+
+.register-form small a:hover {
+  text-decoration: underline;
+}
+
+/* Bouton */
+.register-form button {
+  font-weight: bold;
+  padding: 0.5rem 0;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .register-form-container {
+    padding: 1.5rem;
+  }
+}

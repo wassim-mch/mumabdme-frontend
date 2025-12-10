@@ -76,15 +76,7 @@
   margin-top: 30px;
 }
 
-.row {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-}
 
-.row input {
-  flex: 1;
-}
 
 .form input,
 .form textarea {
