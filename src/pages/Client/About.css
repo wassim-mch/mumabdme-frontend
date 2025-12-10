@@ -1,0 +1,53 @@
+/* ABOUT PAGE STYLES */
+.about-hero { background: linear-gradient(180deg, #fff 0%, #fbfbfd 100%); }
+
+/* petites icônes rondes */
+.icon-circle {
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  display: inline-flex;
+  font-size: 20px;
+}
+
+/* cards image */
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+/* améliorer l'apparence générale */
+h1, h2, h3, h4, h5 {
+  color: #222;
+}
+
+.lead {
+  color: #555;
+}
+
+/* responsive spacing */
+@media (max-width: 768px) {
+  .card-img-top { height: 160px; }
+  .icon-circle { width: 48px; height: 48px; }
+}
+
+/* petits détails */
+.stretched-link { color: #007bff; }
+.stretched-link:hover { color: #005bb5; text-decoration: none; }
+
+/* ombre douce pour tous les cards */
+.card { border-radius: 0.6rem; }
+
+/* CTA */
+.btn-outline-primary {
+  border-radius: 30px;
+  padding: 10px 28px;
+}
+
+/* Accessibilité: focus visible */
+a:focus, button:focus {
+  outline: 3px solid rgba(0,123,255,0.18);
+  outline-offset: 2px;
+}

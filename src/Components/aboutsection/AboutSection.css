@@ -1,0 +1,46 @@
+/* SECTION GLOBAL */
+.about-section {
+  background-color: #ffffff;
+}
+
+/* LEFT SIDE */
+.about-logo {
+  width: 80px;
+  height: 80px;
+}
+
+/* Description */
+.about-description {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  font-family: sPacifico, cursive;
+  width: 90%;
+}
+
+/* RIGHT SIDE WRAPPER */
+.about-right-wrapper {
+  position: relative;
+}
+
+/* Separator line */
+.about-separator {
+  width: 1px;
+  background-color: #dcdcdc;
+  height: 100%;
+  margin-left: 15px;
+}
+
+/* Images customization */
+.about-img {
+  border-radius: 8px;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* Responsive Improvements */
+@media (max-width: 991px) {
+  .about-separator {
+    display: none;
+  }
+}
