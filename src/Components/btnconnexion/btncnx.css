@@ -1,0 +1,46 @@
+.custom-btn {
+  width: 8.5em;
+  height: 3.3em;
+  margin: 0.5em;
+  background: rgb(226, 0, 215);
+  color: white;
+  border: none;
+  border-radius: 0.625em;
+  font-size: 1.1rem; /* responsive */
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  transition: color 0.3s ease;
+}
+
+.custom-btn:hover {
+  color: rgb(255, 255, 255);
+}
+
+.custom-btn::after {
+  content: "";
+  background: rgb(247, 126, 247);
+  position: absolute;
+  z-index: -1;
+  left: -20%;
+  right: -20%;
+  top: 0;
+  bottom: 0;
+  transform: skewX(-45deg) scale(0, 1);
+  transition: all 0.5s;
+}
+
+.custom-btn:hover::after {
+  transform: skewX(-45deg) scale(1, 1);
+}
+
+/* 🔥 Responsive version */
+@media (max-width: 480px) {
+  .custom-btn {
+    width: 100%;
+    height: 3em;
+    font-size: 0.9rem;
+  }
+}

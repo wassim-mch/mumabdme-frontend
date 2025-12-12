@@ -1,0 +1,173 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Montserrat:wght@300;400;500&display=swap");
+
+/* 🔵 HERO */
+.about-hero {
+  background-image: url("/assets/bgtitle.jpg");
+  background-size: cover;
+background-position: 50% 80%;
+  height: 45vh;
+  color: white;
+  position: relative;
+}
+
+
+.hero-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  text-shadow: black 1px 1px 1px;
+}
+
+/* 🔵 TITRES & TEXTES */
+.section-title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  color: #c2185b;
+}
+
+.section-text {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.1rem;
+  width: 90%;
+  color: #555;
+}
+
+/* 🔵 STATS */
+.about-stats {
+  background-image: url("/assets/bgstats.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.about-stats .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.288);
+}
+
+.stat-number {
+  font-family: "Poppins";
+  font-size: 2.3rem;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-family: "Montserrat";
+}
+
+/* 🔵 MISSION CARDS */
+.mission-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  transition: transform .3s ease;
+}
+/* Description */
+.mission-desc {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.95rem;
+  color: #555;
+  text-align: center;
+}
+
+.mission-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Image */
+.mission-card img {
+  width: 100%;
+  height: 120px; 
+  object-fit: contain;
+}
+
+/* Content */
+.mission-card-body {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Title */
+.mission-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #c2185b;
+  text-align: center;
+}
+/* 🔵 POURQUOI NOUS CHOISIR */
+.about-choose {
+  background-image: url("/assets/bgwhy.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.choose-icon {
+  color: black;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.choose-title {
+  font-family: "Poppins";
+  color: #c2185b;
+}
+
+.choose-text {
+  font-family: "Montserrat";
+  color: black;
+}
+
+/* 🔵 SERVICES */
+.service-card {
+  text-align: center;
+  background: #fff;
+  border-radius: 10px;
+  padding-bottom: 15px;
+}
+
+.service-card img {
+  border-radius: 10px 10px 0 0;
+}
+
+.service-title {
+  font-family: "Poppins";
+  margin-top: 10px;
+  color: #c2185b;
+}
+
+.service-text {
+  font-family: "Montserrat";
+}
+
+/* 🔵 FINAL CTA */
+.about-final {
+  background: #f9d8f3;
+}
+
+.final-title {
+  font-family: "Poppins";
+  font-size: 2rem;
+}
+
+.final-text {
+  font-family: "Montserrat";
+}
+/* Mobile */
+@media (max-width: 576px) {
+  .mission-card img {
+    height: 180px;
+  }
+  .section-text {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+}

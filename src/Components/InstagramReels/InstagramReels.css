@@ -1,0 +1,76 @@
+.reels-wrapper {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* Card style Instagram Reels */
+.reel-card {
+  width: 100%;
+  aspect-ratio: 9 / 16; /* format vertical */
+  border-radius: 15px;
+  overflow: hidden;
+  background: #000;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* Vidéo en mode cover */
+.reel-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Mobile optimisation */
+@media (max-width: 576px) {
+  .reel-card {
+    border-radius: 12px;
+  }
+  
+}
+@media (max-width: 768px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none !important;
+  }
+}
+.reels-header {
+  text-align: center;
+}
+
+.reels-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #111;
+  font-family: "Montserrat", sans-serif;
+}
+
+.reels-line {
+  width: 80px;
+  height: 4px;
+  margin: 8px auto 12px auto;
+  background: linear-gradient(45deg, #ff004c, #ff7b00);
+  border-radius: 10px;
+}
+
+.reels-subtitle {
+  font-size: 15px;
+  color: #666;
+  font-family: "Montserrat", sans-serif;
+}
+
+@media (max-width: 576px) {
+  .reels-title {
+    font-size: 22px;
+  }
+
+  .reels-line {
+    width: 60px;
+  }
+
+  .reels-subtitle {
+    font-size: 13px;
+  }
+}
+

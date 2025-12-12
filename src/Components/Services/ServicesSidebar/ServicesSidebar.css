@@ -1,0 +1,108 @@
+/* Font */
+.sidebar-custom {
+  font-family: "Poppins", sans-serif;
+  background: #f8f9ff;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #e5e5f5;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Title */
+.sidebar-custom .title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1d1d40;
+}
+
+/* Category list */
+.category-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 15px;
+}
+
+.category-item {
+  margin-bottom: 10px;
+}
+
+/* Custom radio */
+.custom-radio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: #30305c;
+}
+
+.custom-radio input[type="radio"] {
+  display: none;
+}
+
+.radio-mark {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: inline-block;
+  border: 2px solid #6c63ff;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+.custom-radio input:checked + .radio-mark {
+  background: #6c63ff;
+  border-color: #6c63ff;
+}
+
+.radio-mark::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.custom-radio input:checked + .radio-mark::after {
+  opacity: 1;
+}
+
+/* Price slider */
+.price-wrapper {
+  margin-top: 15px;
+}
+
+.range-input {
+  width: 100%;
+  appearance: none;
+  height: 4px;
+  border-radius: 4px;
+  background: #d7d7f7;
+  outline: none;
+  margin-bottom: 10px;
+}
+
+.range-input::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #6c63ff;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.range-input::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.price-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #4b4b7e;
+}

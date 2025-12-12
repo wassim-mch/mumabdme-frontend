@@ -1,0 +1,15 @@
+.service-card img {
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.card-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.2rem;
+}
+
+.card-text {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.95rem;
+}
