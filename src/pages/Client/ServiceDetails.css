@@ -1,0 +1,17 @@
+.gallery-thumb {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border: 2px solid #f8c6d9;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.gallery-thumb:hover {
+  transform: scale(1.05);
+  border-color: #ff5ea6;
+}
+
+.bg-pink {
+  background-color: #ff6fb1 !important;
+}
