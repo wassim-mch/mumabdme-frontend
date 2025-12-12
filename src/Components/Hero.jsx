@@ -10,7 +10,6 @@ import hero3 from "/assets/hero3.jpg";
 const Hero = () => {
   return (
     <div className="hero-container">
-
       <Swiper
         modules={[Autoplay]}
         autoplay={{ delay: 5000, disableOnInteraction: false }}
@@ -22,10 +21,7 @@ const Hero = () => {
 
         {/* ----- SLIDE 1 : Maman porte bébé ----- */}
         <SwiperSlide>
-          <div
-            className="hero-slide"
-            style={{ backgroundImage: `url(${hero1})` }}
-          >
+          <div className="hero-slide slide-1" style={{ backgroundImage: `url(${hero1})` }}>
             <div className="hero-content">
               <h1>Bienvenue chez Mum and Me</h1>
               <hr className="hero-divider" />
@@ -38,10 +34,7 @@ const Hero = () => {
 
         {/* ----- SLIDE 2 : Maman soin visage ----- */}
         <SwiperSlide>
-          <div
-            className="hero-slide"
-            style={{ backgroundImage: `url(${hero2})` }}
-          >
+          <div className="hero-slide slide-2" style={{ backgroundImage: `url(${hero2})` }}>
             <div className="hero-content hero-right">
               <h1>Fatigué ? Besoin d’énergie et d’équilibre ?</h1>
               <hr className="hero-divider" />
@@ -54,10 +47,7 @@ const Hero = () => {
 
         {/* ----- SLIDE 3 : Enfant workshop ----- */}
         <SwiperSlide>
-          <div
-            className="hero-slide"
-            style={{ backgroundImage: `url(${hero3})` }}
-          >
+          <div className="hero-slide slide-3" style={{ backgroundImage: `url(${hero3})` }}>
             <div className="hero-content">
               <h1>Une communauté bienveillante pour vos enfants</h1>
               <hr className="hero-divider" />
@@ -69,7 +59,6 @@ const Hero = () => {
         </SwiperSlide>
 
       </Swiper>
-
     </div>
   );
 };

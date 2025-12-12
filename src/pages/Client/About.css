@@ -2,11 +2,11 @@
 
 /* 🔵 HERO */
 .about-hero {
-  background-image: url("/assets/bgtitle.jpg");
+  background-image: url("/assets/bgstand.jpg");
   background-size: cover;
 background-position: 50% 80%;
   height: 45vh;
-  color: white;
+  color: rgb(0, 0, 0);
   position: relative;
 }
 
@@ -22,7 +22,7 @@ background-position: 50% 80%;
 .section-title {
   font-family: "Poppins", sans-serif;
   font-weight: 700;
-  color: #c2185b;
+  color: #c57d5c;
 }
 
 .section-text {
@@ -34,9 +34,7 @@ background-position: 50% 80%;
 
 /* 🔵 STATS */
 .about-stats {
-  background-image: url("/assets/bgstats.jpg");
-  background-size: cover;
-  background-position: center;
+  background-color: #c57d5c;
   position: relative;
 }
 
@@ -100,12 +98,12 @@ background-position: 50% 80%;
   font-family: "Poppins", sans-serif;
   font-size: 1.3rem;
   font-weight: 600;
-  color: #c2185b;
+  color: #c57d5c;
   text-align: center;
 }
 /* 🔵 POURQUOI NOUS CHOISIR */
 .about-choose {
-  background-image: url("/assets/bgwhy.jpg");
+  background-image: url("/assets/bgstand.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -118,7 +116,7 @@ background-position: 50% 80%;
 
 .choose-title {
   font-family: "Poppins";
-  color: #c2185b;
+  color: black;
 }
 
 .choose-text {
@@ -150,7 +148,7 @@ background-position: 50% 80%;
 
 /* 🔵 FINAL CTA */
 .about-final {
-  background: #f9d8f3;
+  background: #ffc8ae;
 }
 
 .final-title {

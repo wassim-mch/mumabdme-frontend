@@ -269,7 +269,7 @@
 ---------------------------------------------- */
 .hero-container {
   width: 100%;
-  height: 90vh;
+  height: 100%;
   position: relative;
 }
 
@@ -277,21 +277,11 @@
 .hero-slide {
   width: 100%;
   height: 90vh;
-  background-size: contain;   /* affiche l’image en entier */
+  background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
-  background-color: #fdf7f4;  /* optionnel : remplissage derrière l’image */
+  background-position: start center;
 }
 
-/* dark overlay */
-.hero-slide::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: none; 
-  pointer-events: none;
-  z-index: 0;
-}
 
 /* ----- TEXT CONTENT ----- */
 .hero-content {
@@ -308,7 +298,7 @@
   animation: fadeIn 1.2s ease-out;
 }
 
-/* Texte aligné à droite (pour slide 2) */
+/* Texte aligné à droite (pour slider 2 desktop) */
 .hero-right {
   left: auto;
   right: 15%;
@@ -329,29 +319,32 @@
   margin-bottom: 20px;
 }
 
-
-/* ----- SIMPLE FADE ANIMATION (PLUS DE SLIDE HAUT/BAS) ----- */
+/* ----- FADE ANIMATION ----- */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-
 /* ----- RESPONSIVE ----- */
 @media (max-width: 992px) {
   .hero-slide,
   .hero-container {
-    height: 40vh;
-  }
-  .hero-slide {
+    height: 50vh;
+    background-position: center; /* centre pour mobile/tablette */
     background-size: cover;
-    background-position: center;
   }
 
   .hero-content {
     width: 60%;
-    left: 10%;
-     text-align: left;
+    left: 8%;
+    text-align: left; /* tous les textes deviennent left sur tablette */
+  }
+
+  /* inversion pour slider 2 qui était right sur desktop */
+  .hero-right {
+    left: 40%;
+    right: auto;
+    text-align: left;
   }
 
   .hero-content h1 {
@@ -366,22 +359,34 @@
 @media (max-width: 576px) {
   .hero-slide,
   .hero-container {
+    height: 30vh;
+    width: 100%;
     background-size: cover;
-    background-position: center;
   }
 
+  /* Texte responsive */
   .hero-content {
     width: 70%;
     left: 10%;
-    text-align: left; /* toutes les hero-right deviennent left sur mobile */
+    text-align: left;
   }
 
   .hero-content h1 {
-    font-size: 22px; /* texte plus petit sur mobile */
+    font-size: 22px;
   }
 
   .hero-content p {
     font-size: 12px;
+  }
+
+  /* ----- Background position par slide ----- */
+  .slide-1,
+  .slide-3 {
+    background-position: end ; /* image commence à droite */
+  }
+
+  .slide-2 {
+    background-position: start ; /* image commence à gauche */
   }
 }
 

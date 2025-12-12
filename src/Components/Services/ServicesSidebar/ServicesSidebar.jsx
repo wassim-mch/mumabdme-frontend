@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import api from "../../../api/api";
-import "./ServicesSidebar.css"; // 👉 Style séparé
+import "./ServicesSidebar.css";
 
 const ServicesSidebar = ({ onFilterChange }) => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [priceRange, setPriceRange] = useState([0, 10000]);
+  const [expandedCategory, setExpandedCategory] = useState(null);
 
   useEffect(() => {
     api
@@ -17,71 +17,86 @@ const ServicesSidebar = ({ onFilterChange }) => {
   useEffect(() => {
     onFilterChange({
       category: selectedCategory ? parseInt(selectedCategory) : null,
-      price: priceRange,
     });
-  }, [selectedCategory, priceRange]);
+  }, [selectedCategory]);
+
+  const handleCategoryClick = (cat) => {
+    if (cat.subcategories?.length > 0) {
+      setExpandedCategory(expandedCategory === cat.id ? null : cat.id);
+    } else {
+      setSelectedCategory(cat.id.toString());
+      setExpandedCategory(null);
+    }
+  };
+
+  const handleSubcategoryClick = (sub, parentId) => {
+    setSelectedCategory(sub.id.toString());
+    setExpandedCategory(parentId);
+  };
 
   return (
     <div className="sidebar-custom">
       <h5 className="title">Catégories</h5>
 
       <ul className="category-list">
-        {(categories || []).map((cat) => (
-          <li key={cat.id} className="category-item">
-            <label className="custom-radio">
-              <input
-                type="radio"
-                name="category"
-                value={cat.id}
-                checked={selectedCategory === cat.id.toString()}
-                onChange={() => setSelectedCategory(cat.id.toString())}
-              />
-              <span className="radio-mark"></span>
-              {cat.name}
-            </label>
+        {categories.map((cat) => (
+          <li
+            key={cat.id}
+            className={`category-item ${
+              selectedCategory === cat.id.toString() ? "selected-category" : ""
+            }`}
+          >
+            <div
+              className="custom-radio"
+              onClick={() => handleCategoryClick(cat)}
+            >
+              <span>{cat.name}</span>
+              {cat.subcategories?.length > 0 && (
+                <span>{expandedCategory === cat.id ? "▲" : "▼"}</span>
+              )}
+            </div>
+
+            {cat.subcategories?.length > 0 && (
+              <ul
+                className={`subcategory-list ${
+                  expandedCategory === cat.id ? "open" : ""
+                }`}
+              >
+                {cat.subcategories.map((sub) => (
+                  <li
+                    key={sub.id}
+                    className={`category-item ${
+                      selectedCategory === sub.id.toString()
+                        ? "selected-category"
+                        : ""
+                    }`}
+                  >
+                    <label
+                      className="custom-radio"
+                      onClick={() => handleSubcategoryClick(sub, cat.id)}
+                    >
+                      <span className="radio-mark"></span>
+                      {sub.name}
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
         ))}
 
         <li className="category-item">
-          <label className="custom-radio">
-            <input
-              type="radio"
-              name="category"
-              value=""
-              checked={selectedCategory === ""}
-              onChange={() => setSelectedCategory("")}
-            />
+          <label
+            className={`custom-radio ${
+              selectedCategory === "" ? "selected-category" : ""
+            }`}
+            onClick={() => setSelectedCategory("")}
+          >
             <span className="radio-mark"></span>
             Tous
           </label>
         </li>
       </ul>
-
-      <h5 className="title mt-4">Prix</h5>
-
-      <div className="price-wrapper">
-        <input
-          type="range"
-          min="0"
-          max="30000"
-          value={priceRange[0]}
-          onChange={(e) => setPriceRange([+e.target.value, priceRange[1]])}
-          className="range-input"
-        />
-        <input
-          type="range"
-          min="0"
-          max="30000"
-          value={priceRange[1]}
-          onChange={(e) => setPriceRange([priceRange[0], +e.target.value])}
-          className="range-input"
-        />
-
-        <div className="d-flex justify-content-between mt-2">
-          <span className="price-label">{priceRange[0]} DA</span>
-          <span className="price-label">{priceRange[1]} DA</span>
-        </div>
-      </div>
     </div>
   );
 };
