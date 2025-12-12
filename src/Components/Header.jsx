@@ -1,15 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FaUserCircle ,FaShoppingCart  } from "react-icons/fa";
-import logo from "/assets/logo.png"; 
-import Button from "./btnconnexion/btncnx";
-import { AuthContext } from "../context/AuthContext";
+import { FaInstagram, FaPhone } from "react-icons/fa";
+import logo from "/assets/logo.png";
 
 const Header = () => {
   const location = useLocation();
-  const { user, logout } = useContext(AuthContext);
-  const [showMenu, setShowMenu] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [showPhones, setShowPhones] = useState(false);
 
   const navLinks = [
     { name: "Accueil", path: "/" },
@@ -20,6 +17,21 @@ const Header = () => {
 
   const handleToggle = () => setIsCollapsed(!isCollapsed);
   const closeMenu = () => setIsCollapsed(false);
+
+  // REF pour fermer en cliquant ailleurs
+  const phoneMenuRef = useRef(null);
+
+  // CLICK OUTSIDE pour fermer le menu tel
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (phoneMenuRef.current && !phoneMenuRef.current.contains(event.target)) {
+        setShowPhones(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <header>
@@ -34,7 +46,7 @@ const Header = () => {
       <nav className="navbar navbar-expand-lg sticky-top">
         <div className="container">
 
-          {/* LOGO + TITRE */}
+          {/* LOGO */}
           <Link className="navbar-brand d-flex align-items-center gap-3" to="/">
             <img src={logo} alt="logo" style={{ height: "80px", objectFit: "contain" }} />
             <div className="d-flex flex-column">
@@ -48,15 +60,11 @@ const Header = () => {
           </Link>
 
           {/* TOGGLER MOBILE */}
-          <button
-            className="navbar-toggler mx-auto"
-            type="button"
-            onClick={handleToggle}
-          >
+          <button className="navbar-toggler mx-auto" type="button" onClick={handleToggle}>
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          {/* LINKS + LOGIN + PANIER */}
+          {/* NAV + ICONES */}
           <div className={`collapse navbar-collapse ${isCollapsed ? "show" : ""}`} id="mainNavbar">
 
             {/* NAV LINKS */}
@@ -66,7 +74,7 @@ const Header = () => {
                   <Link
                     to={link.path}
                     className={`nav-link fw-semibold ${location.pathname === link.path ? "active" : ""}`}
-                    onClick={closeMenu} // ferme le menu mobile
+                    onClick={closeMenu}
                   >
                     {link.name}
                   </Link>
@@ -74,36 +82,44 @@ const Header = () => {
               ))}
             </ul>
 
-            {/* LOGIN / PROFILE + PANIER */}
-            <div className="d-flex align-items-center gap-3 justify-content-center mt-3 mt-lg-0">
-              {!user ? (
-                <Link to="/login" style={{ textDecoration: "none" }}>
-                  <Button>Connexion</Button>
-                </Link>
-              ) : (
-                <div className="position-relative">
-                  <button
-                    className="btn btn-light rounded-circle fs-4"
-                    onClick={() => setShowMenu(!showMenu)}
+            {/* ICONES INSTAGRAM + TELEPHONE */}
+            <div className="d-flex align-items-center gap-4 justify-content-center mt-3 mt-lg-0">
+
+              {/* Instagram */}
+              <a
+                href="https://www.instagram.com/mumandme.dz/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={closeMenu}
+                className="fs-4 text-dark"
+              >
+                <FaInstagram />
+              </a>
+
+              {/* Téléphone (icone + dropdown) */}
+              <div ref={phoneMenuRef} className="position-relative">
+                <button
+                  className="fs-4 text-dark bg-transparent border-0"
+                  onClick={() => setShowPhones(!showPhones)}
+                >
+                  <FaPhone />
+                </button>
+
+                {/* Menu dropdown */}
+                {showPhones && (
+                  <div
+                    className="phone-dropdown position-absolute end-0 mt-2 p-2 rounded shadow"
+                    style={{ background: "#fff", zIndex: 1000 }}
                   >
-                    <FaUserCircle />
-                  </button>
-
-                  {showMenu && (
-                    <div className="dropdown-menu show position-absolute end-0 mt-2" style={{ minWidth: "150px" }}>
-                      <Link to="/profile" className="dropdown-item">Mon profil</Link>
-                      <button className="dropdown-item" onClick={logout}>Déconnexion</button>
-                    </div>
-                  )}
-                </div>
-              )}
-
-             {/* PANIER */}
-<Link to="/cart" className="text-dark fs-4 position-relative">
-  <FaShoppingCart />
-  <span className=" position-absolute top-0 start-100 translate-middle" style={{ fontSize: "0.9rem" }}>
-  </span>
-</Link>
+                    <a href="tel:+213770217640" className="dropdown-item">
+                      📞 0770 21 76 40
+                    </a>
+                    <a href="tel:+213770424537" className="dropdown-item">
+                      📞 0770 42 45 37
+                    </a>
+                  </div>
+                )}
+              </div>
 
             </div>
           </div>

@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
-import hero1 from "/assets/hero1.jpeg"; 
+import hero1 from "/assets/hero1.jpg"; 
 import hero2 from "/assets/hero2.jpg";
 import hero3 from "/assets/hero3.jpg";
 
@@ -19,49 +19,50 @@ const Hero = () => {
         speed={800}
         className="hero-swiper"
       >
-        {/* ----- SLIDE 1 ----- */}
+
+        {/* ----- SLIDE 1 : Maman porte bébé ----- */}
         <SwiperSlide>
           <div
             className="hero-slide"
             style={{ backgroundImage: `url(${hero1})` }}
           >
             <div className="hero-content">
-              <h1>Renforcer le lien, vivre la douceur</h1>
+              <h1>Bienvenue chez Mum and Me</h1>
               <hr className="hero-divider" />
               <p className="hero-subtext">
-                Un espace chaleureux dédié aux mamans et à leurs bébés.
+                Un havre de paix dédié à votre bien-être, à celui de votre enfant et à la magie du lien qui vous unit.
               </p>
             </div>
           </div>
         </SwiperSlide>
 
-        {/* ----- SLIDE 2 ----- */}
+        {/* ----- SLIDE 2 : Maman soin visage ----- */}
         <SwiperSlide>
           <div
             className="hero-slide"
             style={{ backgroundImage: `url(${hero2})` }}
           >
-            <div className="hero-content">
-              <h1>La douceur qui prend soin de votre bébé</h1>
+            <div className="hero-content hero-right">
+              <h1>Fatigué ? Besoin d’énergie et d’équilibre ?</h1>
               <hr className="hero-divider" />
               <p className="hero-subtext">
-                Des soins adaptés pour le bien-être et l'éveil sensoriel.
+                Chez Mum and Me, notre mission est de vous offrir des solutions de bien-être concrètes et adaptées, des soins experts et une prise de rendez-vous en un seul clic.
               </p>
             </div>
           </div>
         </SwiperSlide>
 
-        {/* ----- SLIDE 3 ----- */}
+        {/* ----- SLIDE 3 : Enfant workshop ----- */}
         <SwiperSlide>
           <div
             className="hero-slide"
             style={{ backgroundImage: `url(${hero3})` }}
           >
             <div className="hero-content">
-              <h1>Un moment pour vous, un éclat pour votre bien-être</h1>
+              <h1>Une communauté bienveillante pour vos enfants</h1>
               <hr className="hero-divider" />
               <p className="hero-subtext">
-                Accordez-vous une pause, nous prenons soin de vous.
+                Des ateliers ludiques, créatifs et éducatifs pour éveiller leur curiosité et renforcer le lien familial.
               </p>
             </div>
           </div>

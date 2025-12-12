@@ -32,7 +32,8 @@ const Footer = () => {
           <div className="col-md-4 mb-4">
             <h5 className="footer-title">Contact</h5>
             <ul className="footer-links">
-              <li><FaPhoneAlt /> 05 55 55 55 55</li>
+              <li><FaPhoneAlt /> 0770 21 76 40</li>
+              <li><FaPhoneAlt /> 0770 42 45 37</li>
               <li>
                 <a href="https://https://www.instagram.com/mumandme.dz/.com" target="_blank">
                   <FaInstagram /> Instagram
