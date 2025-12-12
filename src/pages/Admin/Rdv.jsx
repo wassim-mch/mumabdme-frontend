@@ -82,11 +82,7 @@ const Rdv = () => {
             <tr>
               <th>ID</th>
               <th>Client</th>
-<<<<<<< HEAD
-=======
-              <th>Phone</th>
-              <th>Services</th>
->>>>>>> f29fa4c7497703f04fef1cb8e9bad254768fc4b4
+
               <th>Status</th>
               <th>Date</th>
               <th>Actions</th>
@@ -97,7 +93,6 @@ const Rdv = () => {
               rdvs.map((r) => (
                 <tr key={r.id}>
                   <td>{r.id}</td>
-<<<<<<< HEAD
                   <td>{r.user?.name || "-"}</td>
                   <td>{r.status}</td>
                   <td>{r.scheduled_at}</td>
@@ -108,25 +103,6 @@ const Rdv = () => {
                     >
                       <FaEdit />
                     </button>
-=======
-                  <td>{r.user.name || "-"}</td>
-                  <td>{r.user.phone || "-"}</td>
-                  <td>{r.items && r.items.length > 0
-                    ? r.items.map((item) => item.service?.name).filter(Boolean).join(", ")
-                    : "-"}</td>
-                  <td>{r.status}</td>
-                  <td>{r.scheduled_at}</td>
-                  <td>
-                    {r.status == "en attente" && (
-                      <button
-                        className="btn btn-warning btn-sm"
-                        onClick={() => openModal(r)}
-                      >
-                        <FaEdit />
-                      </button>
-                    )}
-                    
->>>>>>> f29fa4c7497703f04fef1cb8e9bad254768fc4b4
                   </td>
                 </tr>
               ))

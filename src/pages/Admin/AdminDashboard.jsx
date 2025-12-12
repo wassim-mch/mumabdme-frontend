@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from 'react';
 
 const AdminDashboard = () => {
@@ -33,14 +32,3 @@ const AdminDashboard = () => {
 };
 
 export default AdminDashboard;
-=======
-import React from 'react'
-
-const AdminDashboard = () => {
-  return (
-    <div>AdminDashboard</div>
-  )
-}
-
-export default AdminDashboard
->>>>>>> f29fa4c7497703f04fef1cb8e9bad254768fc4b4

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useRef, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaInstagram, FaPhone } from "react-icons/fa";
@@ -8,44 +7,6 @@ const Header = () => {
   const location = useLocation();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [showPhones, setShowPhones] = useState(false);
-=======
-import React, { useContext, useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { FaUserCircle } from "react-icons/fa";
-import logo from "/assets/logo.png"; 
-import Button from "./btnconnexion/btncnx";
-import { AuthContext } from "../context/AuthContext";
-
-const Header = () => {
-  const location = useLocation();
-  const { user, logout } = useContext(AuthContext);
-  const [showMenu, setShowMenu] = useState(false);
-  const [isCollapsed, setIsCollapsed] = useState(false);
-
-  const [cartCount, setCartCount] = useState(0);
-
-  // Charger le cart depuis localStorage
-  const loadCart = () => {
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    setCartCount(cart.length);
-  };
-
-  useEffect(() => {
-    const updateCartCount = () => {
-      const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-      setCartCount(cart.length);
-    };
-
-    updateCartCount();
-
-    window.addEventListener("cartUpdated", updateCartCount);
-
-    return () => {
-      window.removeEventListener("cartUpdated", updateCartCount);
-    };
-  }, []);
-
->>>>>>> f29fa4c7497703f04fef1cb8e9bad254768fc4b4
 
   const navLinks = [
     { name: "Accueil", path: "/" },
@@ -57,7 +18,6 @@ const Header = () => {
   const handleToggle = () => setIsCollapsed(!isCollapsed);
   const closeMenu = () => setIsCollapsed(false);
 
-<<<<<<< HEAD
   // REF pour fermer en cliquant ailleurs
   const phoneMenuRef = useRef(null);
 
@@ -82,19 +42,13 @@ const Header = () => {
         </span>
       </div>
 
-=======
-  return (
-    <header>
->>>>>>> f29fa4c7497703f04fef1cb8e9bad254768fc4b4
+
       {/* MAIN NAVBAR */}
       <nav className="navbar navbar-expand-lg sticky-top">
         <div className="container">
 
-<<<<<<< HEAD
           {/* LOGO */}
-=======
-          {/* LOGO + TITRE */}
->>>>>>> f29fa4c7497703f04fef1cb8e9bad254768fc4b4
+
           <Link className="navbar-brand d-flex align-items-center gap-3" to="/">
             <img src={logo} alt="logo" style={{ height: "80px", objectFit: "contain" }} />
             <div className="d-flex flex-column">
@@ -108,23 +62,12 @@ const Header = () => {
           </Link>
 
           {/* TOGGLER MOBILE */}
-<<<<<<< HEAD
           <button className="navbar-toggler mx-auto" type="button" onClick={handleToggle}>
             <span className="navbar-toggler-icon"></span>
           </button>
 
           {/* NAV + ICONES */}
-=======
-          <button
-            className="navbar-toggler mx-auto"
-            type="button"
-            onClick={handleToggle}
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
 
-          {/* LINKS + LOGIN + PANIER */}
->>>>>>> f29fa4c7497703f04fef1cb8e9bad254768fc4b4
           <div className={`collapse navbar-collapse ${isCollapsed ? "show" : ""}`} id="mainNavbar">
 
             {/* NAV LINKS */}
@@ -142,7 +85,6 @@ const Header = () => {
               ))}
             </ul>
 
-<<<<<<< HEAD
             {/* ICONES INSTAGRAM + TELEPHONE */}
             <div className="d-flex align-items-center gap-4 justify-content-center mt-3 mt-lg-0">
 
@@ -182,41 +124,6 @@ const Header = () => {
                 )}
               </div>
 
-=======
-            {/* LOGIN / PROFILE + PANIER */}
-            <div className="d-flex align-items-center gap-3 justify-content-center mt-3 mt-lg-0">
-              {!user ? (
-                <Link to="/login" style={{ textDecoration: "none" }}>
-                  <Button>Connexion</Button>
-                </Link>
-              ) : (
-                <div className="position-relative">
-                  <button
-                    className="btn btn-light rounded-circle fs-4"
-                    onClick={() => setShowMenu(!showMenu)}
-                  >
-                    <FaUserCircle />
-                  </button>
-
-                  {showMenu && (
-                    <div className="dropdown-menu show position-absolute end-0 mt-2" style={{ minWidth: "150px" }}>
-                      <Link to="/profile" className="dropdown-item">Mon profil</Link>
-                      <button className="dropdown-item" onClick={logout}>Déconnexion</button>
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {/* PANIER */}
-              <Link to="/cart" className="text-dark fs-4 position-relative">
-                <i className="fa-solid fa-cart-shopping"></i>
-                {cartCount > 0 && (
-                  <span className="badge bg-danger position-absolute top-0 start-100 translate-middle" style={{ fontSize: "0.7rem" }}>
-                    {cartCount}
-                  </span>
-                )}
-              </Link>
->>>>>>> f29fa4c7497703f04fef1cb8e9bad254768fc4b4
             </div>
           </div>
         </div>

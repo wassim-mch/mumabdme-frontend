@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
-<<<<<<< HEAD
 import api from "../../../api/api";
 import "./ServicesSidebar.css"; // 👉 Style séparé
-=======
-import axios from "axios";
-import api from "../../../api/api";
->>>>>>> f29fa4c7497703f04fef1cb8e9bad254768fc4b4
+
 
 const ServicesSidebar = ({ onFilterChange }) => {
   const [categories, setCategories] = useState([]);
@@ -13,16 +9,10 @@ const ServicesSidebar = ({ onFilterChange }) => {
   const [priceRange, setPriceRange] = useState([0, 10000]);
 
   useEffect(() => {
-<<<<<<< HEAD
     api
       .get("/categories")
       .then((res) => setCategories(res.data.categories || []))
       .catch((err) => console.error(err));
-=======
-    api.get("/categories")
-      .then(res => setCategories(res.data.categories || []))
-      .catch(err => console.error(err));
->>>>>>> f29fa4c7497703f04fef1cb8e9bad254768fc4b4
   }, []);
 
   useEffect(() => {
@@ -33,7 +23,6 @@ const ServicesSidebar = ({ onFilterChange }) => {
   }, [selectedCategory, priceRange]);
 
   return (
-<<<<<<< HEAD
     <div className="sidebar-custom">
       <h5 className="title">Catégories</h5>
 
@@ -93,51 +82,6 @@ const ServicesSidebar = ({ onFilterChange }) => {
           <span className="price-label">{priceRange[0]} DA</span>
           <span className="price-label">{priceRange[1]} DA</span>
         </div>
-=======
-    <div className="sidebar p-3 border rounded bg-light">
-      <h5>Catégories</h5>
-      <ul className="list-unstyled">
-        {(categories || []).map(cat => (
-          <li key={cat.id}>
-            <input
-              type="radio"
-              name="category"
-              value={cat.id}
-              checked={selectedCategory === cat.id.toString()}
-              onChange={() => setSelectedCategory(cat.id.toString())}
-            />{" "}
-            {cat.name}
-          </li>
-        ))}
-        <li>
-          <input
-            type="radio"
-            name="category"
-            value=""
-            checked={selectedCategory === ""}
-            onChange={() => setSelectedCategory("")}
-          />{" "}
-          Tous
-        </li>
-      </ul>
-
-      <h5 className="mt-4">Prix</h5>
-      <div className="d-flex gap-2 align-items-center">
-        <input
-          type="number"
-          value={priceRange[0]}
-          onChange={e => setPriceRange([+e.target.value, priceRange[1]])}
-          className="form-control"
-          placeholder="Min"
-        />
-        <input
-          type="number"
-          value={priceRange[1]}
-          onChange={e => setPriceRange([priceRange[0], +e.target.value])}
-          className="form-control"
-          placeholder="Max"
-        />
->>>>>>> f29fa4c7497703f04fef1cb8e9bad254768fc4b4
       </div>
     </div>
   );
