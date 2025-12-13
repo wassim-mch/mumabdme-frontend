@@ -21,6 +21,7 @@ import Dashboard from "./pages/Admin/AdminDashboard";
 import AdminServices from "./pages/Admin/Services";
 import AdminCategories from "./pages/Admin/Categories";
 import AdminRdv from "./pages/Admin/Rdv";
+import Profile from "./pages/Admin/Profile";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -69,7 +70,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/services" element={<Services />} />
-                <Route path="/services/:id" element={<ServiceDetails />} />
+                <Route path="/service/:id" element={<ServiceDetails />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="*" element={<NotFound />} />

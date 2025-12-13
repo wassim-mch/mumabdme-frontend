@@ -1,8 +1,12 @@
 // src/pages/AdminDashboard.jsx
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import api from "../../api/api";
+import { AuthContext } from "../../context/AuthContext";
+import { toast } from "react-toastify";
 
 const AdminDashboard = () => {
+  const { token } = useContext(AuthContext);
+
   const [stats, setStats] = useState({
     categories: 0,
     services: 0,
@@ -11,28 +15,37 @@ const AdminDashboard = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const [resCategories, resServices, resRdvs] = await Promise.all([
-          api.get("/categories"),
-          api.get("/services"),
-          api.get("/rdvs"),
-        ]);
+  if (!token) {
+    toast.error("Vous devez être connecté pour voir ce tableau de bord.");
+    setLoading(false);
+    return;
+  }
 
-        setStats({
-          categories: resCategories.data.data?.length || 0,
-          services: resServices.data.services?.length || 0,
-          rdvs: resRdvs.data.data?.length || 0,
-        });
-      } catch (error) {
-        console.error("Erreur fetching stats:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchStats = async () => {
+    const axiosConfig = { headers: { Authorization: `Bearer ${token}` } };
 
-    fetchStats();
-  }, []);
+    try {
+      const [resCategories, resServices, resRdvs] = await Promise.all([
+        api.get("/categories", axiosConfig),
+        api.get("/services", axiosConfig),
+        api.get("/rdvs", axiosConfig),
+      ]);
+
+      setStats({
+        categories: resCategories.data.data?.length || 0,
+        services: resServices.data.services?.length || 0,
+        rdvs: resRdvs.data.data?.length || 0,
+      });
+    } catch (error) {
+      console.error(error);
+      toast.error("Erreur lors de la récupération des statistiques !");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchStats();
+}, [token]);
 
 
   if (loading) {
@@ -52,7 +65,7 @@ const AdminDashboard = () => {
 
       <p style={{ fontSize: "1.2rem", maxWidth: "700px", lineHeight: "1.6", margin: '0 auto', textAlign: 'center' }}>
         Ce tableau de bord vous permet de gérer et de suivre l’ensemble des activités 
-        de la plateforme. Vous pouvez consulter le nombre d’utilisateurs, le suivi des services 
+        de la plateforme. Vous pouvez consulter le nombre de catégories, services 
         proposés, ainsi que les rendez-vous confirmés.  
       </p>
 

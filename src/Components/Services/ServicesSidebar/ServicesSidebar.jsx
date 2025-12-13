@@ -28,7 +28,9 @@ const ServicesSidebar = ({ onFilterChange }) => {
       category_id: catId,
       sous_categorie_id: null,
     });
-    setExpandedCategory(catId);
+
+    // 🔥 toggle open / close
+    setExpandedCategory((prev) => (prev === catId ? null : catId));
   };
 
   const selectSubCategory = (catId, subId) => {
@@ -44,43 +46,50 @@ const ServicesSidebar = ({ onFilterChange }) => {
       <h5 className="title">Catégories</h5>
 
       <ul className="category-list">
-        <li className="category-item" onClick={selectAll}>
-          Tous
+        <li className="category-item">
+          <div className="custom-radio all" onClick={selectAll}>
+            Tous
+          </div>
         </li>
 
-        {categories.map((cat) => (
-          <li key={cat.id} className="category-item">
-            <div
-              className="custom-radio"
-              onClick={() => selectCategory(cat.id)}
-            >
-              <span>{cat.name}</span>
+        {categories.map((cat) => {
+          const isOpen = expandedCategory === cat.id;
 
-              {cat.sous_categories?.length > 0 && (
-                <span>
-                  {expandedCategory === cat.id ? "▲" : "▼"}
-                </span>
-              )}
-            </div>
+          return (
+            <li key={cat.id} className="category-item">
+              <div
+                className={`custom-radio ${isOpen ? "active" : ""}`}
+                onClick={() => selectCategory(cat.id)}
+              >
+                <span>{cat.name}</span>
 
-            {expandedCategory === cat.id &&
-              cat.sous_categories?.length > 0 && (
-                <ul className="subcategory-list open">
-                  {cat.sous_categories.map((sub) => (
-                    <li
-                      key={sub.id}
-                      className="subcategory-item"
-                      onClick={() =>
-                        selectSubCategory(cat.id, sub.id)
-                      }
-                    >
-                      {sub.name}
-                    </li>
-                  ))}
-                </ul>
-              )}
-          </li>
-        ))}
+                {cat.sous_categories?.length > 0 && (
+                  <span className={`arrow ${isOpen ? "rotate" : ""}`}>
+                    ▼
+                  </span>
+                )}
+              </div>
+
+              <ul
+                className={`subcategory-list boxed ${
+                  isOpen ? "open" : ""
+                }`}
+              >
+                {cat.sous_categories?.map((sub) => (
+                  <li
+                    key={sub.id}
+                    className="subcategory-item"
+                    onClick={() =>
+                      selectSubCategory(cat.id, sub.id)
+                    }
+                  >
+                    {sub.name}
+                  </li>
+                ))}
+              </ul>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
