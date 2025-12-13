@@ -3,7 +3,10 @@ import ServicesSidebar from "./ServicesSidebar";
 import ServicesList from "./ServicesList";
 
 const ServicesPage = () => {
-  const [filters, setFilters] = useState({ category: null, price: [0, 10000] });
+  const [filters, setFilters] = useState({
+    category_id: null,
+    sous_categorie_id: null,
+  });
 
   return (
     <div className="container my-4">

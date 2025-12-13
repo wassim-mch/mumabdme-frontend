@@ -1,30 +1,26 @@
 import React, { useEffect, useState } from "react";
-import ServiceCard from "../ServiceCard/ServiceCard";
+import { useNavigate } from "react-router-dom";
+import { FaShoppingCart } from "react-icons/fa";
 import api from "../../../api/api";
 
 const ServicesList = ({ filters }) => {
-  const [services, setServices] = useState({ data: [], total: 0 });
-  const [currentPage, setCurrentPage] = useState(1);
-  const servicesPerPage = 4;
+  const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedOptions, setSelectedOptions] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchServices = async () => {
       setLoading(true);
       try {
-        const res = await api.get("/services", {
+        const res = await api.get("/service", {
           params: {
-            category_id: filters.category,
-            min_price: filters.price[0],
-            max_price: filters.price[1],
-            page: currentPage,
+            category_id: filters.category_id,
+            sous_categorie_id: filters.sous_categorie_id,
           },
         });
 
-        setServices({
-          data: res.data.services || [],
-          total: res.data.total || res.data.services?.length || 0,
-        });
+        setServices(res.data.services || []);
       } catch (err) {
         console.error(err);
       } finally {
@@ -33,46 +29,81 @@ const ServicesList = ({ filters }) => {
     };
 
     fetchServices();
-  }, [filters, currentPage]);
+  }, [filters]);
 
-  const totalPages = Math.ceil((services.total || 0) / servicesPerPage);
+  const handleReserve = (service) => {
+    navigate(`/services/${service.id}`, {
+      state: {
+        selectedOption: selectedOptions[service.id] || null,
+      },
+    });
+  };
 
   if (loading) return <p>Chargement des services...</p>;
+  if (services.length === 0)
+    return <p className="text-center">Aucun service trouvé</p>;
 
   return (
-    <>
-      <div className="row g-4">
-        {(services.data || []).length > 0 ? (
-          (services.data || []).map(service => (
-            <div key={service.id} className="col-md-6 col-lg-3">
-              <ServiceCard service={service} />
-            </div>
-          ))
-        ) : (
-          <p className="text-center">Aucun service trouvé</p>
-        )}
-      </div>
+    <div className="row g-4">
+      {services.map((service) => (
+        <div key={service.id} className="col-md-4">
+          <div className="card h-100 shadow-sm">
+            <img
+              src={
+                service.image
+                  ? `http://localhost:8000/storage/${service.image}`
+                  : "/placeholder.png"
+              }
+              className="card-img-top"
+              alt={service.name}
+              style={{ height: "180px", objectFit: "contain" }}
+            />
 
-      {totalPages > 1 && (
-        <nav className="mt-4">
-          <ul className="pagination justify-content-center">
-            {[...Array(totalPages)].map((_, i) => (
-              <li
-                key={i}
-                className={`page-item ${currentPage === i + 1 ? "active" : ""}`}
-              >
-                <button
-                  className="page-link"
-                  onClick={() => setCurrentPage(i + 1)}
+            <div className="card-body d-flex flex-column">
+              <h5 className="card-title">{service.name}</h5>
+
+              <p className="card-text text-truncate">
+                {service.description}
+              </p>
+
+              {/* OPTIONS */}
+              {service.options?.length > 0 && (
+                <select
+                  className="form-select mb-2"
+                  value={selectedOptions[service.id] || ""}
+                  onChange={(e) =>
+                    setSelectedOptions((prev) => ({
+                      ...prev,
+                      [service.id]: e.target.value,
+                    }))
+                  }
                 >
-                  {i + 1}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      )}
-    </>
+                  <option value="">Choisir une option</option>
+                  {service.options.map((opt) => (
+                    <option key={opt.id} value={opt.id}>
+                      {opt.name} (+{Number(opt.prix_seance)} DA)
+                    </option>
+                  ))}
+                </select>
+              )}
+
+              <span className="fw-bold mb-2">
+                {Number(service.prix)} DA
+              </span>
+
+              <button
+                className="btn btn-primary mt-auto d-flex align-items-center justify-content-center gap-2"
+                style={{ backgroundColor: "#c57d5c" }}
+                onClick={() => handleReserve(service)}
+              >
+                <FaShoppingCart />
+                Réserver
+              </button>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
   );
 };
 

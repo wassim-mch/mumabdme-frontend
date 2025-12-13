@@ -1,6 +1,6 @@
 .topbar-services {
   width: 100%;
-  background: #ffb6c1; /* Rose pastel */
+  background: #c57d5c; /* Rose pastel */
   overflow: hidden;
   white-space: nowrap;
   padding: 10px 0;
@@ -12,6 +12,7 @@
   padding-left: 100%;
   font-size: 1rem;
   font-weight: 500;
+  color: #fff;
   animation: scrollText 12s linear infinite;
 }
 

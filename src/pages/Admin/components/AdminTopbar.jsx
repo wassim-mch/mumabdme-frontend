@@ -23,18 +23,39 @@ const AdminTopbar = () => {
 
 
   const navLinks = [
-    { name: "Dashboard", path: "/admin/dashboard", icon: <FaTachometerAlt /> },
-    { name: "Users", path: "/admin/users", icon: <FaUsers /> },
-    { name: "Services", path: "/admin/services", icon: <FaTools /> },
-    { name: "Categories", path: "/admin/categories", icon: <FaFolderOpen /> },
-    { name: "Appointments", path: "/admin/rdv", icon: <FaCalendarAlt /> },
-
-  ];
+  {
+    name: "Dashboard",
+    path: "/admin/dashboard",
+    icon: <FaTachometerAlt style={{ color: "#ffd700" }} />
+  },
+  {
+    name: "Users",
+    path: "/admin/users",
+    icon: <FaUsers style={{ color: "#4dd0ff" }} />
+  },
+  {
+    name: "Services",
+    path: "/admin/services",
+    icon: <FaTools style={{ color: "#00e676" }} />
+  },
+  {
+    name: "Categories",
+    path: "/admin/categories",
+    icon: <FaFolderOpen style={{ color: "#ff9100" }} />
+  },
+  {
+    name: "Appointments",
+    path: "/admin/rdv",
+    icon: <FaCalendarAlt style={{ color: "#ff5252" }} />
+  }
+];
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark admin-topbar">
       <div className="container-fluid">
-        <span className="navbar-brand mb-0 h1">Admin Panel</span>
+        <span className="navbar-brand mb-0 h1 d-flex align-items-center">
+  Admin Panel
+</span>
 
         <button
           className="navbar-toggler"
@@ -45,7 +66,8 @@ const AdminTopbar = () => {
           <FaBars style={{ color: "#000000ff", fontSize: "1.5rem" }} />
         </button>
         <div className={`collapse navbar-collapse ${showMenu ? "show" : ""}`} id="adminNavbar">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+         <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
+
             {navLinks.map((link, index) => (
               <li className="nav-item" key={index}>
                 <Link

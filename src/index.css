@@ -8,7 +8,6 @@
 }
 
 
-
 /* NAVBAR */
 .navbar {
   background: #ffffff !important;
@@ -86,7 +85,6 @@
 
 
 
-
 /* MOBILE */
 @media (max-width: 991px) {
   @media (max-width: 991px) {
@@ -138,10 +136,11 @@
           border: none !important;
 
   }
-  .fs-4 {
+.fs-4 {
     font-size: 1.6rem !important;
   }
-
+  
+ 
 
   .top-header {
     display: none !important;
@@ -263,109 +262,161 @@
     font-size: 0.85rem;
     max-width: 100%;
   }
-}
-
-/* ---------------------------------------------
-   HERO SECTION
+}/* ---------------------------------------------
+   HERO BASE
 ---------------------------------------------- */
 .hero-container {
   width: 100%;
-  height: 90vh;
   position: relative;
+  overflow: hidden;
 }
 
-/* slide image bg */
 .hero-slide {
   width: 100%;
   height: 90vh;
-  background-size: contain;   /* affiche l’image en entier */
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #fdf7f4;  /* optionnel : remplissage derrière l’image */
-
+  position: relative;
 }
 
-/* dark overlay */
+/* Overlay desktop/tablette */
 .hero-slide::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: none; 
-  pointer-events: none;
-  z-index: 0;
+  
 }
 
-/* ----- TEXT CONTENT ----- */
-
+/* ---------------------------------------------
+   HERO CONTENT – DESKTOP
+---------------------------------------------- */
 .hero-content {
   position: absolute;
   top: 50%;
-  left: 15%;
+  left: 10%;
   transform: translateY(-50%);
-  text-align: left;
-  color: #000000;
+  width: 40%;
+  color: #000;
   font-family: sofia;
-  width: 35%;
-  z-index: 10;
-  padding: 20px;
-  animation: fadeIn 1.2s ease-out;
+  z-index: 2;
+  animation: fadeIn 1.2s ease;
 }
 
-/* Texte aligné à droite (pour slide 2) */
 .hero-right {
   left: auto;
-  right: 15%;
+  right: 10%;
   text-align: right;
-
 }
 
 .hero-content h1 {
-  font-size: 48px;
+  font-size: clamp(34px, 4vw, 54px);
   font-weight: 700;
-  margin-bottom: 20px;
   line-height: 1.2;
-
+  margin-bottom: 16px;
 }
 
 .hero-content p {
-  font-size: 20px;
-  font-weight: 300;
-  line-height: 1.5;
-  margin-bottom: 20px;
+  font-size: clamp(16px, 2vw, 22px);
+  line-height: 1.6;
 }
 
-
-
-/* ----- SIMPLE FADE ANIMATION (PLUS DE SLIDE HAUT/BAS) ----- */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.hero-divider {
+  width: 60px;
+  height: 3px;
+  background: #6f42c1;
+  border: none;
+  margin: 16px 0;
 }
 
-
-/* ----- RESPONSIVE ----- */
+/* ---------------------------------------------
+   TABLET
+---------------------------------------------- */
 @media (max-width: 992px) {
-  .hero-slide,
-  .hero-container {
-    height: 40vh;
-  }
   .hero-slide {
-    background-size: cover;
-    background-position: center;
+    height: 65vh;
   }
 
   .hero-content {
-    width: 60%;
-    left: 10%;
-     text-align: left;
+    width: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .hero-right {
+    right: auto;
+    text-align: center;
+  }
+
+  .hero-divider {
+    margin: 16px auto;
+  }
+}
+
+/* ---------------------------------------------
+   MOBILE – HERO DIFFÉRENT
+---------------------------------------------- */
+@media (max-width: 576px) {
+  .hero-slide {
+    height: 100vh;
+    background-position: center top;
+  }
+
+  /* Overlay mobile plus sombre */
+  .hero-slide::before {
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0)
+    );
+  }
+
+  /* Carte texte en bas */
+  .hero-content {
+    top: auto;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 18px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0);
   }
 
   .hero-content h1 {
-    font-size: 28px;
+    font-size: 20px;
   }
 
   .hero-content p {
-    font-size: 14px;
+    font-size: 13px;
+  }
+
+  .hero-divider {
+    margin: 12px auto;
+  }
+}
+
+/* ---------------------------------------------
+   IMAGE MOBILE DIFFÉRENTE (SLIDE 1)
+---------------------------------------------- */
+@media (max-width: 576px) {
+  .slide-1 {
+    background-image: url("/assets/hero1-mobile.jpg") !important;
+    background-size: cover;
+    background-position: center top;
+  }
+  .slide-2{
+    background-image: url("/assets/hero2-mobile.jpg") !important;
+    background-size: cover;
+    background-position: center top;
+  }
+  .slide-3{
+    background-image: url("/assets/hero3-mobile.jpg") !important;
+    background-size: cover;
+    background-position: center top;
   }
 }
 
@@ -535,48 +586,93 @@
 }
 
 .admin-topbar {
-  background: linear-gradient(90deg, #6f42c1, #6610f2);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  padding: 0.5rem 1rem;
-  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #4b2aad, #6f42c1);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  padding: 0.6rem 1.2rem;
+  font-family: "Poppins", sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
+/* Brand */
+.admin-topbar .navbar-brand {
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+}
+
+/* Links */
 .admin-topbar .nav-link {
   font-weight: 500;
-  font-size: 1rem;
-  color: #ffffff;
-  transition: 0.3s;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  transition: all 0.25s ease;
   display: flex;
   align-items: center;
+  gap: 6px;
 }
 
-.admin-topbar .nav-link span {
-  margin-left: 5px;
+.admin-topbar .nav-link:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  transform: translateY(-1px);
 }
 
-.admin-topbar .nav-link:hover,
 .admin-topbar .nav-link.active {
+  background: rgba(255, 255, 255, 0.25);
   color: #ffd700;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
+/* Icons */
+.admin-topbar svg {
+  font-size: 1rem;
+}
+
+/* Logout button */
 .admin-topbar .btn-danger {
-  background: #ff4d4d;
+  background: linear-gradient(135deg, #ff4d4d, #e60000);
   border: none;
-  transition: 0.3s;
+  border-radius: 10px;
+  padding: 0.45rem 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(255, 77, 77, 0.4);
 }
 
 .admin-topbar .btn-danger:hover {
-  background: #cc0000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 77, 77, 0.6);
 }
 
-/* Responsive */
+/* Burger */
+.admin-topbar .navbar-toggler {
+  border: none;
+  outline: none;
+}
+
+/* Mobile menu */
 @media (max-width: 991px) {
+  .admin-topbar .navbar-collapse {
+    background: linear-gradient(135deg, #f7f7f7, #ffffff);
+    border-radius: 14px;
+    padding: 1rem;
+    margin-top: 0.8rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0);
+  }
+
   .admin-topbar .navbar-nav {
     text-align: center;
-    margin-bottom: 0.5rem;
+    gap: 0.4rem;
   }
 
   .admin-topbar .btn-danger {
-    margin-top: 0.5rem;
+    width: 100%;
+    margin-top: 0.8rem;
   }
 }

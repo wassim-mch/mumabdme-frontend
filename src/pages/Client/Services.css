@@ -1,5 +1,5 @@
 .services-hero {
-  background-image: url("/assets/bgservices.jpg"); /* ton image pour services */
+  background-image: url("/assets/bgstand.jpg"); /* ton image pour services */
   background-size: cover;
   background-position: center; /* ou 50% 80% selon ton design */
   height: 45vh;
@@ -14,6 +14,8 @@
   font-family: "Poppins", sans-serif;
   font-size: 4rem;
   font-weight: 700;
+    color: #c57d5c;
+
   text-shadow: 1px 1px 3px rgba(0,0,0,0.7); /* texte lisible sur l'image */
 }
 

@@ -52,22 +52,22 @@ Chez nous, chaque maman, chaque bébé et chaque future maman trouve un lieu de 
         <div className="container position-relative">
           <div className="row text-white">
 
-            <div className="col-6 col-md-3 mb-4">
-              <h2 className="stat-number">500+</h2>
+            <div className="col-6 col-md-3 ">
+              <h2 className="stat-number">50+</h2>
               <p className="stat-label">Clients Satisfaits</p>
             </div>
 
-            <div className="col-6 col-md-3 mb-4">
-              <h2 className="stat-number">25+</h2>
+            <div className="col-6 col-md-3 ">
+              <h2 className="stat-number">10+</h2>
               <p className="stat-label">Professionnels</p>
             </div>
 
-            <div className="col-6 col-md-3 mb-4">
+            <div className="col-6 col-md-3 ">
               <h2 className="stat-number">4.8/5</h2>
               <p className="stat-label">Note Moyenne</p>
             </div>
 
-            <div className="col-6 col-md-3 mb-4">
+            <div className="col-6 col-md-3 ">
               <h2 className="stat-number">100%</h2>
               <p className="stat-label">Accompagnement</p>
             </div>
@@ -90,7 +90,7 @@ Chez nous, chaque maman, chaque bébé et chaque future maman trouve un lieu de 
 
   <div className="col-md-4">
     <div className="mission-card shadow-sm text-center">
-      <FaUserNurse className="card-img-top" size={60} color="#f48fb1" />
+      <FaUserNurse className="card-img-top" size={60} color="#c57d5c" />
       <h4 className="mission-title">Accompagnement</h4>
       <p className="mission-text">Un suivi adapté à chaque besoin.</p>
     </div>
@@ -98,7 +98,7 @@ Chez nous, chaque maman, chaque bébé et chaque future maman trouve un lieu de 
 
   <div className="col-md-4">
     <div className="mission-card shadow-sm text-center">
-      <FaSpa className="card-img-top" size={60} color="#f48fb1" />
+      <FaSpa className="card-img-top" size={60} color="#c57d5c" />
       <h4 className="mission-title">Bien-être</h4>
       <p className="mission-text">Un espace zen et relaxant.</p>
     </div>
@@ -106,7 +106,7 @@ Chez nous, chaque maman, chaque bébé et chaque future maman trouve un lieu de 
 
   <div className="col-md-4">
     <div className="mission-card shadow-sm text-center">
-      <FaBaby className="card-img-top" size={60} color="#f48fb1" />
+      <FaBaby className="card-img-top" size={60} color="#c57d5c" />
       <h4 className="mission-title">Professionnalisme</h4>
       <p className="mission-text">Une équipe qualifiée à votre service.</p>
     </div>
@@ -120,7 +120,7 @@ Chez nous, chaque maman, chaque bébé et chaque future maman trouve un lieu de 
       <section className="about-choose py-5">
         <div className="container">
 
-          <h2 className="section-title text-center text-black">Pourquoi Nous Choisir ?</h2>
+          <h2 className="section-title text-center ">Pourquoi Nous Choisir ?</h2>
 
           <div className="row text-center text-white mt-4 g-4">
 

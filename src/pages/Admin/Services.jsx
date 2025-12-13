@@ -1,6 +1,6 @@
 // src/pages/admin/Services.jsx
 import React, { useState, useEffect, useContext } from "react";
-import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
+import { FaEdit, FaTrash, FaPlus, FaTimes } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../context/AuthContext";
 import api from "../../api/api";
@@ -10,40 +10,41 @@ const Services = () => {
   const axiosConfig = { headers: { Authorization: `Bearer ${token}` } };
   const allDays = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
 
-
   const [services, setServices] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [editService, setEditService] = useState(null);
+
   const [form, setForm] = useState({
     category_id: "",
+    sous_categorie_id: "",
     name: "",
+    mini_description: "",
     description: "",
-    duration: "",
-    price: "",
-    is_active: true,
+    duree: "",
+    prix: "",
     days: [],
     images: [],
     oldImages: [],
     defaultImage: null,
     defaultImageIndex: 0,
     oldImagesToDelete: [],
+    options: [],
   });
 
   // ------------------ FETCH SERVICES & CATEGORIES ------------------
   const fetchServices = async () => {
     try {
       const resServices = await api.get("/services", axiosConfig);
-      setServices(resServices.data.services);
+      setServices(resServices.data.services || []);
 
       const resCategories = await api.get("/categories", axiosConfig);
-      setCategories(resCategories.data.categories || resCategories.data);
+      setCategories(resCategories.data.data || resCategories.data);
     } catch (error) {
       console.error(error);
       toast.error("Erreur lors du chargement des services.");
     } finally {
-
       setLoading(false);
     }
   };
@@ -52,8 +53,7 @@ const Services = () => {
     fetchServices();
   }, [token]);
 
-  // ------------------ MODAL OPEN ------------------
-
+  // ------------------ MODAL ------------------
   const openModal = (service = null) => {
     setEditService(service);
 
@@ -61,40 +61,41 @@ const Services = () => {
       const allOldImages = [
         { id: "main", path: `/storage/${service.image}`, isMain: true },
         ...service.galleries.map(g => ({ ...g, isMain: false })),
-
       ];
 
       setForm({
         category_id: service.category_id || "",
+        sous_categorie_id: service.sous_categorie?.id || "",
         name: service.name || "",
+        mini_description: service.mini_description || "",
         description: service.description || "",
-        duration: service.duration || "",
-        price: service.price || "",
-        is_active: service.is_active ?? true,
-        days: service.joursDisponibles?.map(d => d.day) || [],
+        duree: service.duree || "",
+        prix: service.prix || "",
+        days: service.jours_disponibles?.map(d => d.day) || [],
         oldImages: allOldImages,
         images: [],
         defaultImage: `/storage/${service.image}`,
         defaultImageIndex: -1,
         oldImagesToDelete: [],
+        options: service.options?.length > 0 ? service.options : [],
       });
     } else {
-
       setForm({
         category_id: "",
+        sous_categorie_id: "",
         name: "",
+        mini_description: "",
         description: "",
-        duration: "",
-        price: "",
-        is_active: true,
+        duree: "",
+        prix: "",
         days: [],
         images: [],
         oldImages: [],
         defaultImage: null,
         defaultImageIndex: 0,
         oldImagesToDelete: [],
+        options: [],
       });
-
     }
 
     setModalOpen(true);
@@ -105,17 +106,19 @@ const Services = () => {
     setEditService(null);
     setForm({
       category_id: "",
+      sous_categorie_id: "",
       name: "",
+      mini_description: "",
       description: "",
-      duration: "",
-      price: "",
-      is_active: true,
+      duree: "",
+      prix: "",
       days: [],
       images: [],
       oldImages: [],
       defaultImage: null,
       defaultImageIndex: 0,
       oldImagesToDelete: [],
+      options: [],
     });
   };
 
@@ -137,6 +140,16 @@ const Services = () => {
       setForm(prev => ({ ...prev, [name]: value }));
     }
   };
+
+  // ------------------ OPTIONS ------------------
+  const handleOptionChange = (index, field, value) => {
+    const newOptions = [...form.options];
+    newOptions[index][field] = value;
+    setForm(prev => ({ ...prev, options: newOptions }));
+  };
+
+  const addOption = () => setForm(prev => ({ ...prev, options: [...prev.options, { name: "", description: "", duration: "", prix_seance: "", abonnement_quatre_seance: "", abonnement_huit_seance: "" }] }));
+  const removeOption = (index) => setForm(prev => ({ ...prev, options: prev.options.filter((_, i) => i !== index) }));
 
   // ------------------ IMAGE HANDLERS ------------------
   const handleSetDefault = (index) => setForm(prev => ({ ...prev, defaultImageIndex: index, defaultImage: null }));
@@ -167,47 +180,57 @@ const Services = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-
-    // Gestion image principale
-    if (form.defaultImageIndex >= 0) {
-      formData.append("image", form.images[form.defaultImageIndex]);
-      if (form.oldImages.some(img => img.isMain)) {
-        const mainOld = form.oldImages.find(img => img.isMain);
-        formData.append("old_main_image_to_gallery", mainOld.path);
-      }
-    } else if (form.defaultImage) {
-      formData.append("default_old_image", form.defaultImage);
-      const mainOld = form.oldImages.find(img => img.isMain);
-      if (mainOld && mainOld.path !== form.defaultImage) formData.append("old_main_image_to_gallery", mainOld.path);
-    }
-
-    // Ajouter images nouvelles sauf celle par défaut
-    form.images.forEach((file, i) => {
-      if (i !== form.defaultImageIndex) formData.append("images[]", file);
-    });
-
-    // Supprimer images anciennes
-    form.oldImagesToDelete.forEach(id => formData.append("oldImagesToDelete[]", id));
-
-    // Ajouter jours
-    form.days.forEach(day => formData.append("days[]", day));
-
-    // Ajouter autres champs
-    ["category_id", "name", "description", "duration", "price", "is_active"].forEach(key => formData.append(key, form[key]));
-
     try {
+      const formData = new FormData();
+
+      // IMAGE PRINCIPALE
+      if (form.defaultImageIndex >= 0 && form.images[form.defaultImageIndex]) {
+        formData.append("image", form.images[form.defaultImageIndex]);
+        const mainOld = form.oldImages.find(img => img.isMain);
+        if (mainOld) formData.append("old_main_image_to_gallery", mainOld.path);
+      } else if (form.defaultImage) {
+        formData.append("default_old_image", form.defaultImage);
+        const mainOld = form.oldImages.find(img => img.isMain);
+        if (mainOld && mainOld.path !== form.defaultImage) {
+          formData.append("old_main_image_to_gallery", mainOld.path);
+        }
+      }
+
+      // IMAGES NOUVELLES
+      form.images.forEach((file, i) => {
+        if (i !== form.defaultImageIndex) formData.append("images[]", file);
+      });
+
+      // SUPPRESSION ANCIENNES IMAGES
+      form.oldImagesToDelete.forEach(id => formData.append("oldImagesToDelete[]", id));
+
+      // JOURS
+      form.days.forEach(day => formData.append("days[]", day));
+
+      // OPTIONS
+      form.options.forEach((opt, i) => {
+        Object.keys(opt).forEach(key => {
+          formData.append(`options[${i}][${key}]`, opt[key]);
+        });
+      });
+
+      // AUTRES CHAMPS
+      ["category_id", "sous_categorie_id", "name", "mini_description", "description", "duree", "prix", "is_active"]
+        .forEach(key => formData.append(key, form[key]));
+
+      // ENVOI API
       if (editService) {
-        await api.post(`/service/${editService.id}?_method=PUT`, formData, {
+        await api.post(`/services/${editService.id}?_method=PUT`, formData, {
           headers: { ...axiosConfig.headers, "Content-Type": "multipart/form-data" },
         });
         toast.success("Service modifié !");
       } else {
-        await api.post("/service", formData, {
+        await api.post("/services", formData, {
           headers: { ...axiosConfig.headers, "Content-Type": "multipart/form-data" },
         });
         toast.success("Service ajouté !");
       }
+
       fetchServices();
       closeModal();
     } catch (err) {
@@ -220,12 +243,11 @@ const Services = () => {
   const handleDeleteService = async (id) => {
     if (!window.confirm("Voulez-vous vraiment supprimer ce service ?")) return;
     try {
-      await api.delete(`/service/${id}`, axiosConfig);
+      await api.delete(`/services/${id}`, axiosConfig);
       toast.success("Service supprimé !");
       fetchServices();
     } catch (err) {
       console.error(err);
-
       toast.error("Erreur lors de la suppression.");
     }
   };
@@ -248,10 +270,11 @@ const Services = () => {
               <th>ID</th>
               <th>Image</th>
               <th>Nom</th>
+              <th>Mini Description</th>
               <th>Catégorie</th>
+              <th>Sous-Catégorie</th>
               <th>Durée</th>
               <th>Prix</th>
-              <th>Statut</th>
               <th>Jours</th>
               <th>Actions</th>
             </tr>
@@ -264,11 +287,12 @@ const Services = () => {
                   <img src={`http://localhost:8000/storage/${s.image}`} alt="Service" style={{ width: 50, height: 50, objectFit: "cover" }} />
                 </td>
                 <td>{s.name}</td>
-                <td>{s.category?.name || "-"}</td>
-                <td>{s.duration}</td>
-                <td>{s.price}</td>
-                <td>{s.is_active ? "Actif" : "Inactif"}</td>
-                <td>{s.joursDisponibles?.map(d => d.day).join(", ")}</td>
+                <td>{s.mini_description || "-"}</td>
+                <td>{s.categorie?.name || "-"}</td>
+                <td>{s.sous_categorie?.name || "-"}</td>
+                <td>{s.duree}</td>
+                <td>{s.prix}</td>
+                <td>{s.jours_disponibles?.map(d => d.day).join(", ")}</td>
                 <td>
                   <button className="btn btn-sm btn-warning me-2" onClick={() => openModal(s)}><FaEdit /></button>
                   <button className="btn btn-sm btn-danger" onClick={() => handleDeleteService(s.id)}><FaTrash /></button>
@@ -276,7 +300,7 @@ const Services = () => {
               </tr>
             )) : (
               <tr>
-                <td colSpan="9" className="text-center">Aucun service trouvé</td>
+                <td colSpan="10" className="text-center">Aucun service trouvé</td>
               </tr>
             )}
           </tbody>
@@ -303,10 +327,27 @@ const Services = () => {
                     </select>
                   </div>
 
+                  {/* Sous-catégorie */}
+                  <div className="mb-3">
+                    <label className="form-label">Sous-Catégorie</label>
+                    <select className="form-select" name="sous_categorie_id" value={form.sous_categorie_id} onChange={handleChange}>
+                      <option value="">-- Sélectionner --</option>
+                      {categories.find(c => c.id === parseInt(form.category_id))?.sous_categories?.map(sc => (
+                        <option key={sc.id} value={sc.id}>{sc.name}</option>
+                      ))}
+                    </select>
+                  </div>
+
                   {/* Nom */}
                   <div className="mb-3">
                     <label className="form-label">Nom</label>
                     <input type="text" className="form-control" name="name" value={form.name} onChange={handleChange} required/>
+                  </div>
+
+                  {/* Mini description */}
+                  <div className="mb-3">
+                    <label className="form-label">Mini Description</label>
+                    <input type="text" className="form-control" name="mini_description" value={form.mini_description} onChange={handleChange}/>
                   </div>
 
                   {/* Description */}
@@ -318,19 +359,13 @@ const Services = () => {
                   {/* Durée */}
                   <div className="mb-3">
                     <label className="form-label">Durée</label>
-                    <input type="text" className="form-control" name="duration" value={form.duration} onChange={handleChange}/>
+                    <input type="number" className="form-control" name="duree" value={form.duree} onChange={handleChange}/>
                   </div>
 
                   {/* Prix */}
                   <div className="mb-3">
                     <label className="form-label">Prix</label>
-                    <input type="number" className="form-control" name="price" value={form.price} onChange={handleChange}/>
-                  </div>
-
-                  {/* Statut */}
-                  <div className="form-check mb-3">
-                    <input className="form-check-input" type="checkbox" name="is_active" checked={form.is_active} onChange={handleChange}/>
-                    <label className="form-check-label">Actif</label>
+                    <input type="number" className="form-control" name="prix" value={form.prix} onChange={handleChange}/>
                   </div>
 
                   {/* Jours */}
@@ -346,14 +381,33 @@ const Services = () => {
                     </div>
                   </div>
 
-                  {/* Images nouvelles */}
+                  {/* Options */}
+                  <div className="mb-3">
+                    <label className="form-label">Options</label>
+                    {form.options.map((opt, index) => (
+                      <div key={index} className="border p-2 mb-2">
+                        <div className="d-flex align-items-center mb-2">
+                          <input className="form-control me-2" placeholder="Nom" value={opt.name} onChange={(e) => handleOptionChange(index, "name", e.target.value)} required/>
+                          <input className="form-control me-2" placeholder="Description" value={opt.description} onChange={(e) => handleOptionChange(index, "description", e.target.value)}/>
+                          <button type="button" className="btn btn-danger" onClick={() => removeOption(index)}><FaTimes /></button>
+                        </div>
+                        <div className="d-flex gap-2">
+                          <input className="form-control" placeholder="Durée" type="number" value={opt.duration} onChange={(e) => handleOptionChange(index, "duree", e.target.value)} required/>
+                          <input className="form-control" placeholder="Prix séance" type="number" value={opt.prix_seance} onChange={(e) => handleOptionChange(index, "prix_seance", e.target.value)} required/>
+                          <input className="form-control" placeholder="Abonnement 4 séances" type="number" value={opt.abonnement_quatre_seance} onChange={(e) => handleOptionChange(index, "abonnement_quatre_seance", e.target.value)}/>
+                          <input className="form-control" placeholder="Abonnement 8 séances" type="number" value={opt.abonnement_huit_seance} onChange={(e) => handleOptionChange(index, "abonnement_huit_seance", e.target.value)}/>
+                        </div>
+                      </div>
+                    ))}
+                    <button type="button" className="btn btn-secondary" onClick={addOption}><FaPlus className="me-1"/> Ajouter Option</button>
+                  </div>
 
+                  {/* Images nouvelles */}
                   <div className="mb-3">
                     <label className="form-label">Images</label>
                     <input type="file" className="form-control mb-2" multiple onChange={handleChange} />
                     <div className="d-flex flex-wrap mt-2">
                       {form.images.map((file, index) => (
-
                         <div key={index} className="me-2 mb-2 text-center" style={{ position: "relative" }}>
                           <img
                             src={URL.createObjectURL(file)}
@@ -363,7 +417,6 @@ const Services = () => {
                           <div className="mt-1">
                             <button type="button" className="btn btn-sm btn-success me-1" onClick={() => handleSetDefault(index)}>Définir comme default</button>
                             <button type="button" className="btn btn-sm btn-danger" onClick={() => handleDeleteNewImage(index)}>Supprimer</button>
-
                           </div>
                         </div>
                       ))}
@@ -389,6 +442,7 @@ const Services = () => {
                       ))}
                     </div>
                   </div>
+
                 </div>
                 <div className="modal-footer">
                   <button type="button" className="btn btn-secondary" onClick={closeModal}>Annuler</button>

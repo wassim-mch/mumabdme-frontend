@@ -29,11 +29,19 @@
 /* Custom radio */
 .custom-radio {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 10px;
   cursor: pointer;
   font-size: 0.95rem;
   color: #30305c;
+  padding: 5px 10px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.custom-radio:hover {
+  background: #f0e6de; /* léger fond au hover */
 }
 
 .custom-radio input[type="radio"] {
@@ -72,37 +80,29 @@
   opacity: 1;
 }
 
-/* Price slider */
-.price-wrapper {
-  margin-top: 15px;
+/* Border marron autour de la catégorie sélectionnée */
+.selected-category {
+  border: 2px solid #8b4513; /* marron */
+  background: #fff8f0;
 }
 
-.range-input {
-  width: 100%;
-  appearance: none;
-  height: 4px;
-  border-radius: 4px;
-  background: #d7d7f7;
-  outline: none;
-  margin-bottom: 10px;
+/* Sous-catégories avec animation */
+.subcategory-list {
+  list-style: none;
+  padding-left: 20px;
+  margin-top: 5px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
 }
 
-.range-input::-webkit-slider-thumb {
-  appearance: none;
-  width: 18px;
-  height: 18px;
-  background: #6c63ff;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: 0.2s;
+.subcategory-list.open {
+  max-height: 500px; /* assez grand pour accueillir toutes les sous-catégories */
+  opacity: 1;
 }
 
-.range-input::-webkit-slider-thumb:hover {
-  transform: scale(1.2);
-}
-
-.price-label {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #4b4b7e;
+/* Sous-catégorie item */
+.subcategory-list .category-item {
+  margin-bottom: 5px;
 }

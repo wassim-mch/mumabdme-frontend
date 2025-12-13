@@ -24,10 +24,10 @@ const Contact = () => {
               <hr className="hr" />
               <br />
               <form className="form">
-                <div className="row">
+                
                   <input type="text" placeholder="Votre nom" />
                   <input type="email" placeholder="Votre email"  />
-                </div>
+                
                 <input type="text" placeholder="Objet"  />
                 <textarea placeholder="Votre message" rows="6" ></textarea>
                 <button>Envoyer le message</button>
