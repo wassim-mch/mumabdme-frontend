@@ -1,0 +1,31 @@
+.main-image {
+  object-fit: contain;
+  max-height: 400px;
+  width: 100%;
+}
+
+.gallery-thumb.active {
+  border: 2px solid #ff5ea6;
+}
+
+.description-text {
+  min-width: 300px; /* Pour tous les écrans */
+}
+
+.option-card.selected {
+  background-color: #fff2e8;
+}
+
+.reservation-form input.form-input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.day-badge {
+  padding: 5px 10px;
+  background-color: #ececff;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #30305c;
+}

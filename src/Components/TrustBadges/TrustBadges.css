@@ -1,0 +1,65 @@
+.trust-section {
+  background: #ac7f66;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Container for each badge */
+.trust-badge {
+  padding: 25px;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+}
+
+/* Hover effect */
+.trust-badge:hover {
+  background: rgba(255, 255, 255, 0);
+  transform: translateY(-4px);
+}
+
+/* Icons */
+.trust-icon svg {
+  font-size: 60px;     /* taille desktop */
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+/* Title */
+.trust-title {
+  color: #ffffff;
+  font-size: 1.5rem;   /* grand sur desktop */
+  font-weight: 700;
+}
+
+/* Description */
+.trust-desc {
+  font-size: 1.1rem;
+  color: #ffffff !important;
+  margin: 0;
+}
+.trust-section .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centrer les badges */
+}
+
+/* 📱 MOBILE VERSION */
+@media (max-width: 576px) {
+  .trust-badge {
+    padding: 18px;
+  }
+
+  .trust-icon svg {
+    font-size: 38px;    /* icône plus petite */
+  }
+
+  .trust-title {
+    font-size: 1.1rem;  /* titre plus petit */
+  }
+
+  .trust-desc {
+    font-size: 0.9rem;  /* texte plus petit */
+  }
+}

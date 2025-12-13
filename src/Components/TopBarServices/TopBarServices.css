@@ -1,0 +1,40 @@
+.topbar-services {
+  width: 100%;
+  background: #c57d5c; /* Rose pastel */
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 10px 0;
+  position: relative;
+}
+
+.scrolling-text {
+  display: inline-block;
+  padding-left: 100%;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  animation: scrollText 12s linear infinite;
+}
+
+/* Animation défilement */
+@keyframes scrollText {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .scrolling-text {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .scrolling-text {
+    font-size: 0.8rem;
+  }
+}

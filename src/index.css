@@ -1,0 +1,678 @@
+@import url('https://fonts.googleapis.com/css2?family=Limelight&family=Momo+Trust+Display&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sofia&family=Zen+Tokyo+Zoo&display=swap');
+/* TOP HEADER */
+.top-header {
+  background-color: #826656; /* rose froid */
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  padding: 10px 0;
+}
+
+
+/* NAVBAR */
+.navbar {
+  background: #ffffff !important;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.texttopbar {
+  text-shadow: #000000 0px 0px 0.2px;
+}
+
+/* NAV LINKS */
+.navbar-nav .nav-link {
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500;
+  color: #333 !important;
+  transition: 0.3s ease;
+  position: relative;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #d679ce !important;
+}
+
+.navbar-nav .nav-link.active::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #d679ce;
+  margin-top: 4px;
+  border-radius: 2px;
+  border: none !important;
+}
+
+/* LOGO + TITLE */
+.navbar-brand img {
+  height: 60px;
+}
+
+.navbar-brand h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  transition: transform 0.2s ease;
+}
+
+.navbar-brand h1:hover {
+  transform: scale(1.02);
+}
+
+.navbar .fs-4 {
+  color: #826656 !important;
+  transition: 0.3s ease;
+}
+
+.navbar .fs-4:hover {
+  transform: scale(1.2);
+  color: #f835ee !important;
+}
+.phone-dropdown .dropdown-item {
+  padding: 8px 12px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  color: #826656;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.phone-dropdown .dropdown-item:hover {
+  background-color: #f5f5f5;
+  border-radius: 6px;
+}
+
+
+
+/* MOBILE */
+@media (max-width: 991px) {
+  @media (max-width: 991px) {
+  /* Center navbar links, profile and cart */
+  #mainNavbar {
+    text-align: center;
+      border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  }
+
+  #mainNavbar .navbar-nav {
+    flex-direction: column;
+    gap: 15px;
+    margin: 0 !important;
+          border: none !important;
+
+  }
+
+  /* Center login/profile + cart below links */
+  #mainNavbar > .d-flex {
+    justify-content: center !important;
+    margin-top: 15px;
+  }
+
+  /* Make toggle button centered */
+  .navbar-toggler {
+    margin: 0px;
+    margin-left: auto;
+    margin-right: 10px;
+    display: block; 
+    border: none;
+
+  }
+  .navbar-toggler:focus {
+    box-shadow: none;
+
+  }
+}
+
+  .navbar-nav {
+    margin-top: 15px;
+    
+  }
+
+  .navbar-nav .nav-link {
+    padding: 10px !important;
+    font-size: 16px;
+          border: none !important;
+
+  }
+.fs-4 {
+    font-size: 1.6rem !important;
+  }
+  
+ 
+
+  .top-header {
+    display: none !important;
+  }
+}
+
+/* FOOTER */
+.footer-container {
+  background: #ac7f66;
+  color: #000000;
+  padding: 40px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Conteneur interne pour alignement */
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+/* Logo et slogan */
+.footer-logo {
+  width: 120px;
+  height: auto;
+}
+
+.footer-slogan {
+  max-width: 300px;
+  font-size: 1.2rem;
+  opacity: 0.9;
+  font-family: Pacifico, cursive;
+  line-height: 1.5;
+  margin-top: 10px;
+}
+
+/* Titres */
+.footer-title {
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  font-weight: bold;
+  color: #000000;
+}
+
+/* Liens */
+.footer-links {
+  list-style: none;
+  padding-left: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #000000;
+  transition: 0.3s;
+  font-family: montserrat, sans-serif;
+  font-weight: 600;
+}
+
+.footer-links a:hover {
+  color: #ff007b; /* couleur douce */
+}
+
+/* Icônes */
+.footer-links svg {
+  margin-right: 8px;
+}
+
+/* Bas du footer */
+.footer-bottom {
+  border-top: 1px solid #333;
+  padding-top: 10px;
+  font-size: 1rem;
+  color: #000000;
+  margin-top: 30px;
+  text-align: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .footer-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-links {
+    padding-left: 0;
+  }
+  .footer-slogan {
+    max-width: 100%;
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-inner {
+    flex-direction: row;       /* côte à côte */
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;           /* permet de passer en colonne si trop petit */
+    gap: 20px;
+  }
+
+  .footer-section {
+    flex: 1;                   /* chaque section prend de l’espace */
+    min-width: 45%;            /* au moins 45% de largeur pour tenir côte à côte */
+  }
+
+  .footer-logo {
+    width: 100px;
+    margin-bottom: 15px;
+  }
+
+  .footer-slogan {
+    font-size: 0.85rem;
+    max-width: 100%;
+  }
+}/* ---------------------------------------------
+   HERO BASE
+---------------------------------------------- */
+.hero-container {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-slide {
+  width: 100%;
+  height: 90vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+}
+
+/* Overlay desktop/tablette */
+.hero-slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  
+}
+
+/* ---------------------------------------------
+   HERO CONTENT – DESKTOP
+---------------------------------------------- */
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  width: 40%;
+  color: #000;
+  font-family: sofia;
+  z-index: 2;
+  animation: fadeIn 1.2s ease;
+}
+
+.hero-right {
+  left: auto;
+  right: 10%;
+  text-align: right;
+}
+
+.hero-content h1 {
+  font-size: clamp(34px, 4vw, 54px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.hero-content p {
+  font-size: clamp(16px, 2vw, 22px);
+  line-height: 1.6;
+}
+
+.hero-divider {
+  width: 60px;
+  height: 3px;
+  background: #6f42c1;
+  border: none;
+  margin: 16px 0;
+}
+
+/* ---------------------------------------------
+   TABLET
+---------------------------------------------- */
+@media (max-width: 992px) {
+  .hero-slide {
+    height: 65vh;
+  }
+
+  .hero-content {
+    width: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .hero-right {
+    right: auto;
+    text-align: center;
+  }
+
+  .hero-divider {
+    margin: 16px auto;
+  }
+}
+
+/* ---------------------------------------------
+   MOBILE – HERO DIFFÉRENT
+---------------------------------------------- */
+@media (max-width: 576px) {
+  .hero-slide {
+    height: 100vh;
+    background-position: center top;
+  }
+
+  /* Overlay mobile plus sombre */
+  .hero-slide::before {
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0)
+    );
+  }
+
+  /* Carte texte en bas */
+  .hero-content {
+    top: auto;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 18px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0);
+  }
+
+  .hero-content h1 {
+    font-size: 20px;
+  }
+
+  .hero-content p {
+    font-size: 13px;
+  }
+
+  .hero-divider {
+    margin: 12px auto;
+  }
+}
+
+/* ---------------------------------------------
+   IMAGE MOBILE DIFFÉRENTE (SLIDE 1)
+---------------------------------------------- */
+@media (max-width: 576px) {
+  .slide-1 {
+    background-image: url("/assets/hero1-mobile.jpg") !important;
+    background-size: cover;
+    background-position: center top;
+  }
+  .slide-2{
+    background-image: url("/assets/hero2-mobile.jpg") !important;
+    background-size: cover;
+    background-position: center top;
+  }
+  .slide-3{
+    background-image: url("/assets/hero3-mobile.jpg") !important;
+    background-size: cover;
+    background-position: center top;
+  }
+}
+
+
+
+/*Login page*/
+/* Fond et overlay */
+.login-page {
+  height: 100vh;
+  width: 100%;
+  background-image: url('/assets/bgauth.jpg'); /* ton image */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-page .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0); /* assombrir l'image */
+}
+
+/* Formulaire centré */
+.login-form-container {
+  position: relative;
+  z-index: 2;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Titres */
+.login-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Lien et texte */
+.login-form small a {
+  color: #0d6efd;
+  text-decoration: none;
+}
+
+.login-form small a:hover {
+  text-decoration: underline;
+}
+
+/* Bouton */
+.login-form button {
+  font-weight: bold;
+  padding: 0.5rem 0;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .login-form-container {
+    padding: 1.5rem;
+  }
+}
+
+
+/* Register*/
+/* Fond et overlay */
+.register-page {
+  height: 100vh;
+  width: 100%;
+  background-image: url('/assets/bgauth.jpg'); /* ton image */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-page .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0);
+}
+
+/* Formulaire centré */
+.register-form-container {
+  position: relative;
+  z-index: 2;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  max-width: 450px;
+  width: 90%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Titres */
+.register-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Lien et texte */
+.register-form small a {
+  color: #0d6efd;
+  text-decoration: none;
+}
+
+.register-form small a:hover {
+  text-decoration: underline;
+}
+
+/* Bouton */
+.register-form button {
+  font-weight: bold;
+  padding: 0.5rem 0;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .register-form-container {
+    padding: 1.5rem;
+  }
+}
+
+
+
+
+/*Layout admin*/
+/* Layout Admin */
+.admin-layout {
+  display: flex;
+}
+
+/* Admin topbar */
+.navbar-nav .nav-link {
+  font-weight: 500;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.navbar-nav .nav-link.active {
+  text-decoration: underline;
+}
+
+@media (min-width: 992px) {
+    .navbar-nav {
+    text-align: center;
+  }
+
+  
+}
+
+.admin-topbar {
+  background: linear-gradient(135deg, #4b2aad, #6f42c1);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  padding: 0.6rem 1.2rem;
+  font-family: "Poppins", sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+/* Brand */
+.admin-topbar .navbar-brand {
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+}
+
+/* Links */
+.admin-topbar .nav-link {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.admin-topbar .nav-link:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.admin-topbar .nav-link.active {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffd700;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+/* Icons */
+.admin-topbar svg {
+  font-size: 1rem;
+}
+
+/* Logout button */
+.admin-topbar .btn-danger {
+  background: linear-gradient(135deg, #ff4d4d, #e60000);
+  border: none;
+  border-radius: 10px;
+  padding: 0.45rem 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(255, 77, 77, 0.4);
+}
+
+.admin-topbar .btn-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 77, 77, 0.6);
+}
+
+/* Burger */
+.admin-topbar .navbar-toggler {
+  border: none;
+  outline: none;
+}
+
+/* Mobile menu */
+@media (max-width: 991px) {
+  .admin-topbar .navbar-collapse {
+    background: linear-gradient(135deg, #f7f7f7, #ffffff);
+    border-radius: 14px;
+    padding: 1rem;
+    margin-top: 0.8rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0);
+  }
+
+  .admin-topbar .navbar-nav {
+    text-align: center;
+    gap: 0.4rem;
+  }
+
+  .admin-topbar .btn-danger {
+    width: 100%;
+    margin-top: 0.8rem;
+  }
+}

@@ -1,0 +1,208 @@
+.contactpage {
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* MAP SECTION */
+.mapsection {
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(1, 1, 1, 0.6);
+}
+
+.mapwrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.mapiframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* CONTACT FORM SECTION */
+.contactFormSection {
+  background-color: #f1f1f1;
+  padding: 50px 0 100px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.contactContainer {
+  width: 85%;
+  max-width: 1200px;
+  display: flex;
+  border-radius: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+
+/* FORM WRAPPER */
+.formWrapper {
+  flex: 1 1 60%;
+  padding: 60px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.formWrapper h2 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.hr {
+  width: 80px;
+  border: solid rgba(0, 0, 0, 0.2) 2px;
+  border-radius: 2px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+
+
+.form input,
+.form textarea {
+  padding: 15px;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 80px;
+  border: 2px solid #ececec;
+  font-size: 16px;
+  font-weight: 300;
+  color: #999;
+  width: 100%;
+  background-color: #f9f9f9;
+}
+
+.form textarea {
+  border-radius: 16px;
+  resize: none;
+}
+
+.form input:disabled,
+.form textarea:disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+.form button {
+  background-color: #516DA6;
+  color: white;
+  padding: 12px;
+  align-self: center;
+  width: 80%;
+  border: none;
+  border-radius: 40px;
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* INFO WRAPPER */
+.infoWrapper {
+  flex: 1 1 40%;
+  background-color: #c57d5c;
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  position: relative;
+  text-shadow: black 0px 0px 2px;
+  min-height: 600px;
+}
+
+.infoOverlay {
+  padding: 60px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.infoOverlay h3 {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.hr2 {
+  width: 80px;
+  border: solid white 2px;
+  border-radius: 2px;
+  opacity: 0.8;
+  margin-top: 10px;
+}
+
+.titreinfo {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.infoOverlay p {
+  margin: 16px 0;
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+  padding-left: 10px;
+}
+/* 🌐 RESPONSIVE */
+@media (min-width:768px) and (max-width: 768px) {
+  .contactContainer {
+    flex-direction: column; /* met les blocs l'un en dessous de l'autre */
+  }
+
+  .formWrapper,
+  .infoWrapper {
+    flex: 1 1 100%;
+    min-height: auto;
+    padding: 30px;
+  }
+
+  .form button {
+    width: 100%;
+  }
+
+  .infoWrapper {
+    order: 2; /* place info en bas sur mobile */
+  }
+
+  .formWrapper {
+    order: 1;
+  }
+
+  .infoOverlay {
+    padding: 30px;
+  }
+
+  .infoOverlay h3 {
+    font-size: 28px;
+  }
+
+  .infoOverlay p {
+    font-size: 16px;
+    padding-left: 5px;
+  }
+
+  .titreinfo {
+    font-size: 16px;
+    gap: 8px;
+  }
+}

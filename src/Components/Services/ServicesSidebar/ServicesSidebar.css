@@ -1,0 +1,142 @@
+/* ===== SIDEBAR ===== */
+.sidebar-custom {
+  font-family: "Poppins", sans-serif;
+  background: #f8f9ff;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid #e3e3f3;
+  width: 100%;
+}
+
+/* ===== TITLE ===== */
+.title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #1d1d40;
+}
+
+/* ===== CATEGORY LIST ===== */
+.category-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Séparateur */
+.category-item {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.category-item:last-child {
+  border-bottom: none;
+}
+
+/* ===== CATEGORY ITEM ===== */
+.custom-radio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  color: #30305c;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.custom-radio:hover {
+  background: #f0e6de;
+  transform: translateX(3px);
+}
+
+.custom-radio.active {
+  background: #fff2e8;
+  border: 1px solid #8b4513;
+  font-weight: 600;
+}
+
+.custom-radio.all {
+  background: #ececff;
+  font-weight: 500;
+}
+
+/* ===== ARROW ===== */
+.arrow {
+  font-size: 0.75rem;
+  transition: transform 0.4s ease;
+}
+
+.arrow.rotate {
+  transform: rotate(180deg);
+}
+
+/* ===== SUBCATEGORY LIST ===== */
+.subcategory-list {
+  list-style: none;
+  margin-top: 6px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0;            /* 🔥 IMPORTANT */
+  border: none;          /* 🔥 IMPORTANT */
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+
+/* Open animation */
+.subcategory-list.open {
+  max-height: 400px;
+  opacity: 1;
+}
+
+/* Encadré */
+.subcategory-list.boxed {
+  background: #ffffff;
+  border: 1px solid #e1e1e1;
+  border-radius: 12px;
+  padding: 10px;
+}
+
+/* ===== SUBCATEGORY ITEM ===== */
+.subcategory-item {
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #444;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.subcategory-item:hover {
+  background: #f5e6dc;
+  color: #8b4513;
+  transform: translateX(5px);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .sidebar-custom {
+    padding: 15px;
+  }
+
+  .custom-radio {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .subcategory-item {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar-custom {
+    border-radius: 12px;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+}

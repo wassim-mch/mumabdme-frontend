@@ -1,0 +1,105 @@
+/* IMPORT FONTS */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Montserrat:wght@300;400;500&display=swap");
+
+/* SECTION BACKGROUND */
+.about-section {
+  background-image: url("/assets/bgstand.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  padding: 80px 0;
+}
+
+/* Overlay */
+.about-section .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  z-index: 1;
+}
+
+/* Content above overlay */
+.about-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* TITLE */
+.about-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 2.3rem;
+  color: #c57d5c;
+  text-align: center;
+}
+
+@media (min-width: 992px) {
+  .about-title {
+    text-align: left;
+  }
+}
+
+/* DESCRIPTION */
+.about-description {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #444;
+  max-width: 90%;
+}
+
+/* RECTANGLE IMAGE CONTAINER */
+.img-box {
+  width: 100%;
+  height: 300px;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease;
+}
+
+.img-box:hover {
+  transform: translateY(-4px);
+}
+
+/* IMAGE INSIDE */
+.about-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+/* LOGO + TITLE */
+.about-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centre sur mobile */
+  gap: 12px;
+}
+
+.brand-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+/* Bouton plus large */
+.btn-large {
+  width: 260px !important;
+  padding: 12px 20px !important;
+  font-size: 1.1rem !important;
+  color: #fff !important;
+}
+
+/* Desktop : aligner à gauche */
+@media (min-width: 992px) {
+  .about-brand {
+    justify-content: flex-start;
+  }
+}
+
