@@ -64,8 +64,8 @@ const Categories = () => {
     if (cat) {
       setForm({
         name: cat.name,
-        sous_categories: cat.sous_categories
-          ? cat.sous_categories.map((sc) => sc.name)
+        sous_categories: cat.sous_categorie
+          ? cat.sous_categorie.map((sc) => sc.name)
           : [""],
       });
     } else {
@@ -152,8 +152,8 @@ const Categories = () => {
                   <td>{cat.id}</td>
                   <td>{cat.name}</td>
                   <td>
-                    {cat.sous_categories
-                      ? cat.sous_categories.map((sc) => sc.name).join(", ")
+                    {cat.sous_categorie
+                      ? cat.sous_categorie.map((sc) => sc.name).join(", ")
                       : "-"}
                   </td>
                   <td>
