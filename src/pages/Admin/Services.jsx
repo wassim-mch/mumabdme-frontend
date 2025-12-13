@@ -60,7 +60,7 @@ const Services = () => {
     if (service) {
       const allOldImages = [
         { id: "main", path: `/storage/${service.image}`, isMain: true },
-        ...service.galleries.map(g => ({ ...g, isMain: false })),
+        ...(service.galleries ?? []).map(g => ({ ...g, isMain: false })),
       ];
 
       setForm({
@@ -392,7 +392,7 @@ const Services = () => {
                           <button type="button" className="btn btn-danger" onClick={() => removeOption(index)}><FaTimes /></button>
                         </div>
                         <div className="d-flex gap-2">
-                          <input className="form-control" placeholder="Durée" type="number" value={opt.duration} onChange={(e) => handleOptionChange(index, "duree", e.target.value)} required/>
+                          <input className="form-control" placeholder="Durée" type="number" value={opt.duree} onChange={(e) => handleOptionChange(index, "duree", e.target.value)} required/>
                           <input className="form-control" placeholder="Prix séance" type="number" value={opt.prix_seance} onChange={(e) => handleOptionChange(index, "prix_seance", e.target.value)} required/>
                           <input className="form-control" placeholder="Abonnement 4 séances" type="number" value={opt.abonnement_quatre_seance} onChange={(e) => handleOptionChange(index, "abonnement_quatre_seance", e.target.value)}/>
                           <input className="form-control" placeholder="Abonnement 8 séances" type="number" value={opt.abonnement_huit_seance} onChange={(e) => handleOptionChange(index, "abonnement_huit_seance", e.target.value)}/>
