@@ -334,7 +334,7 @@ const Services = () => {
                     <label className="form-label">Sous-Catégorie</label>
                     <select className="form-select" name="sous_categorie_id" value={form.sous_categorie_id} onChange={handleChange}>
                       <option value="">-- Sélectionner --</option>
-                      {categories.find(c => c.id === parseInt(form.category_id))?.sous_categories?.map(sc => (
+                      {categories.find(c => c.id === parseInt(form.category_id))?.sous_categorie?.map(sc => (
                         <option key={sc.id} value={sc.id}>{sc.name}</option>
                       ))}
                     </select>

@@ -2,6 +2,28 @@ import React from 'react'
 import { FaMapMarkerAlt, FaPhoneAlt,  FaInstagram } from "react-icons/fa";
 import './Contact.css'
 const Contact = () => {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await api.post("/contact", form);
+      alert("Message envoyé avec succès ✅");
+      setForm({ name: "", email: "", subject: "", message: "" });
+    } catch (error) {
+      alert("Erreur lors de l'envoi ❌");
+    }
+  };
   return (
     <div className="contactpage">
         <section className="mapsection">
@@ -23,15 +45,46 @@ const Contact = () => {
               <h2>Contactez-nous</h2>
               <hr className="hr" />
               <br />
-              <form className="form">
-                
-                  <input type="text" placeholder="Votre nom" />
-                  <input type="email" placeholder="Votre email"  />
-                
-                <input type="text" placeholder="Objet"  />
-                <textarea placeholder="Votre message" rows="6" ></textarea>
-                <button>Envoyer le message</button>
+              <form className="form" onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Votre nom"
+                  value={form.name}
+                  onChange={handleChange}
+                  required
+                />
+
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Votre email"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                />
+
+                <input
+                  type="text"
+                  name="subject"
+                  placeholder="Objet"
+                  value={form.subject}
+                  onChange={handleChange}
+                  required
+                />
+
+                <textarea
+                  name="message"
+                  placeholder="Votre message"
+                  rows="6"
+                  value={form.message}
+                  onChange={handleChange}
+                  required
+                ></textarea>
+
+                <button type="submit">Envoyer le message</button>
               </form>
+
             </div>
 
             <div className="infoWrapper">

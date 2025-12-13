@@ -75,7 +75,6 @@ const ServiceDetails = () => {
     e.preventDefault();
     if (!serviceData) return;
 
-    // تحقق من اختيار Option إذا كانت موجودة
     if (serviceData.options?.length > 0 && !selectedOption) {
       toast.error("Veuillez sélectionner une option avant de réserver !");
       return;
@@ -163,7 +162,7 @@ const ServiceDetails = () => {
           {/* Durée */}
           {serviceData.duration > 0 && (
             <p className="text-secondary d-flex align-items-center gap-2">
-              <FaClock /> {serviceData.duration} min
+              <FaClock /> {serviceData.duration} Heure
             </p>
           )}
 
@@ -185,8 +184,12 @@ const ServiceDetails = () => {
                   }}
                 >
                   <strong className="d-block">{opt.name}</strong>
+                  <strong className="d-block"><FaClock />{opt.duree} Heure</strong>
                   <p className="mb-1">{opt.description}</p>
-                  <p className="text-success fw-bold">Prix: {Number(opt.prix_seance)} DA</p>
+                  <p className="text-success fw-bold">Prix seance: {Number(opt.prix_seance)} DA</p>
+                  <p className="text-success fw-bold">َAbonnement 4 seance : {Number(opt.abonnement_quatre_seance)} DA</p>
+                  <p className="text-success fw-bold">Abonnement 8 seance: {Number(opt.abonnement_huit_seance)} DA</p>
+
                 </div>
               ))}
             </div>
