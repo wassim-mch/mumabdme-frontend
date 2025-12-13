@@ -18,13 +18,13 @@ import ServiceDetails from "./pages/Client/ServiceDetails";
 
 import AdminLayout from "./pages/Admin/components/AdminLayout";
 import Dashboard from "./pages/Admin/AdminDashboard";
-import Users from "./pages/Admin/Users";
 import AdminServices from "./pages/Admin/Services";
 import AdminCategories from "./pages/Admin/Categories";
 import AdminRdv from "./pages/Admin/Rdv";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import NotFound from "./pages/Client/NotFound";
 
 const GuestRoute = ({ children }) => {
   const token = localStorage.getItem("token");
@@ -54,7 +54,7 @@ function App() {
 
      <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
         <Route path="dashboard" element={<Dashboard />} />
-        <Route path="users" element={<Users />} />
+        <Route path="profile" element={<Profile />} />
         <Route path="services" element={<AdminServices />} />
         <Route path="categories" element={<AdminCategories />} />
         <Route path="rdv" element={<AdminRdv />} />
@@ -72,7 +72,7 @@ function App() {
                 <Route path="/services/:id" element={<ServiceDetails />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
-                <Route path="*" element={<Home />} />
+                <Route path="*" element={<NotFound />} />
               
               </Routes>
             </main>

@@ -189,11 +189,13 @@ const Services = () => {
         const mainOld = form.oldImages.find(img => img.isMain);
         if (mainOld) formData.append("old_main_image_to_gallery", mainOld.path);
       } else if (form.defaultImage) {
-        formData.append("default_old_image", form.defaultImage);
-        const mainOld = form.oldImages.find(img => img.isMain);
-        if (mainOld && mainOld.path !== form.defaultImage) {
-          formData.append("old_main_image_to_gallery", mainOld.path);
-        }
+          formData.append("default_old_image_id",
+            form.oldImages.find(img => img.path === form.defaultImage)?.id
+          );        
+          const mainOld = form.oldImages.find(img => img.isMain);
+          if (mainOld && mainOld.path !== form.defaultImage) {
+            formData.append("old_main_image_to_gallery", mainOld.path);
+          }
       }
 
       // IMAGES NOUVELLES
@@ -430,7 +432,7 @@ const Services = () => {
                       {form.oldImages.map(img => (
                         <div key={img.id} className="me-2 mb-2 text-center">
                           <img
-                            src={`http://localhost:8000${img.path}`}
+                            src={`http://localhost:8000/storage/${img.path}`}
                             alt="old"
                             style={{ width: 100, height: 100, objectFit: "cover", border: form.defaultImage === img.path ? "2px solid green" : "1px solid #ccc" }}
                           />

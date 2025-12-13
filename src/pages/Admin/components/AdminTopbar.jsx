@@ -29,11 +29,6 @@ const AdminTopbar = () => {
     icon: <FaTachometerAlt style={{ color: "#ffd700" }} />
   },
   {
-    name: "Users",
-    path: "/admin/users",
-    icon: <FaUsers style={{ color: "#4dd0ff" }} />
-  },
-  {
     name: "Services",
     path: "/admin/services",
     icon: <FaTools style={{ color: "#00e676" }} />
@@ -47,6 +42,11 @@ const AdminTopbar = () => {
     name: "Appointments",
     path: "/admin/rdv",
     icon: <FaCalendarAlt style={{ color: "#ff5252" }} />
+  },
+  {
+    name: "Profile",
+    path: "/admin/profile",
+    icon: <FaUsers style={{ color: "#4dd0ff" }} />
   }
 ];
 
